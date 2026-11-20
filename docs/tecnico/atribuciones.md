@@ -35,10 +35,10 @@ La selección mantiene el producto completo: no elimina reglas, guiones, catálo
 
 ## Pendientes antes de publicar
 
-- Revisar y enviar la consulta preparada; registrar el alcance de la respuesta de TPI.
+- La consulta se ha enviado según confirmación de Juanma; registrar el alcance de la respuesta cuando llegue.
 - Decidir licencia del código propio y completar avisos según el contenido finalmente distribuido.
 - Revisar textos, PDF y recursos cuya procedencia o permiso no está certificado.
-- Revisar la selección final y el estado de Git; todavía no hay repositorio inicializado en esta carpeta.
-- Elegir alojamiento y comprobar su configuración real antes de publicar la demo.
+- Revisar la selección final y el estado de Git antes de nuevos commits.
+- Comprobar el estado del despliegue GitHub Pages después de actualizar main.
 
 No se añaden capturas al README en este paso. Se usa el diagrama técnico; imágenes del juego requerirían revisión independiente. No se prepara vídeo ni caso de estudio.

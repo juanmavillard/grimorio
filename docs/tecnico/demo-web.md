@@ -1,6 +1,6 @@
 # Preparación de la demo web
 
-La demo es la misma aplicación estática, sin backend, cuentas ni servidor de partidas. Preparación local; no hay despliegue público ni URL de producción. Su publicación sigue pendiente de aclarar permisos con TPI.
+La demo es la misma aplicación estática, sin backend, cuentas ni servidor de partidas. Disponible en [GitHub Pages](https://juanmavillard.github.io/grimorio/). El despliegue público no implica afiliación ni aprobación de TPI; la consulta enviada al editor sigue pendiente de respuesta.
 
 ## Construir y abrir
 
@@ -25,11 +25,11 @@ La prueba sirve los archivos generados bajo `/grimorio/` con un puerto local tem
 
 Los recorridos completos de reglas e interfaz se mantienen en `npm run test:browser:all`; la prueba de demo verifica el resultado preparado, no reemplaza esa batería.
 
-## Configuración para un futuro alojamiento
+## Publicación en GitHub Pages
 
 Directorio a servir: `output/demo`, tras ejecutar `npm run demo:build`. No publicar la raíz del proyecto. No requiere instalación en el servidor, variables secretas ni API. Usar HTTPS; localhost es una excepción de desarrollo para service workers. Mantener rutas relativas, tipos MIME correctos para JavaScript y webmanifest, y acceso al service worker y al manifiesto de versión. Evitar caché prolongada de `sw.js` y `release-manifest.js`.
 
-Se prueba una subruta para permitir alojamientos de proyecto. No se ha configurado un proveedor ni creado un flujo que publique automáticamente. El destino y los permisos se resolverán antes de desplegar.
+Se prueba una subruta para permitir alojamientos de proyecto. El flujo `.github/workflows/pages.yml` construye y publica únicamente `output/demo` al subir cambios a main, o mediante ejecución manual en Actions. No hay que subir output o ZIP al repositorio. Si una ejecución falla, revisar sus registros antes de dar por actualizada la demo. Los permisos sobre el contenido se gestionan por separado del despliegue técnico.
 
 ## Datos de visitantes
 

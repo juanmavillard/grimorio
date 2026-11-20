@@ -1,8 +1,16 @@
-# Grimorio privado · Base 3
+# Grimorio
 
 Asistente de Narrador para partidas presenciales de **Blood on the Clocktower**. Reúne preparación, personajes, fases, votaciones y notas en un dispositivo, con guardado local y funcionamiento offline tras la primera carga.
 
-Proyecto personal de **Juanma Villard**. Preparado para portfolio; publicación de fuentes y demo pendiente de aclarar permisos. No es una aplicación oficial de The Pandemonium Institute.
+**[Probar la demo](https://juanmavillard.github.io/grimorio/)** · [Guía de uso](docs/manuales/general/guia-del-programa.md) · [Arquitectura](docs/tecnico/arquitectura.md)
+
+Proyecto personal de **Juanma Villard**, desarrollado con JavaScript, IndexedDB y Electron. No es una aplicación oficial de The Pandemonium Institute.
+
+## Demo online
+
+Abre la demo y prepara una partida con nombres ficticios. No requiere cuenta ni instalación. Los datos se guardan en tu navegador; no se comparten con otros visitantes. Para conservarlos o trasladarlos a otro equipo, exporta una copia JSON.
+
+La demo se publica con GitHub Pages a partir de los archivos preparados en `output/demo`. Los cambios que se suben a `main` activan su reconstrucción y publicación. El funcionamiento offline requiere completar la primera carga.
 
 ## Qué resuelve
 
@@ -27,7 +35,7 @@ npm run demo:build
 npm run demo:start
 ```
 
-Abre `http://127.0.0.1:4174`. La demo conserva las funciones de la aplicación y sirve solo `output/demo`; no incluye las fuentes de herramientas, documentación interna ni datos personales. No hay una URL pública todavía. [Preparación de la demo](docs/tecnico/demo-web.md).
+Abre `http://127.0.0.1:4174`. La demo conserva las funciones de la aplicación y sirve solo `output/demo`; no incluye las fuentes de herramientas, documentación interna ni datos personales. [Preparación de la demo](docs/tecnico/demo-web.md).
 
 ## Arquitectura y decisiones
 
@@ -53,7 +61,7 @@ flowchart LR
 | Proyección pública | Mostrar la mesa sin roles, notas ni estados privados | [Motor](src/core/engine.js), [vista](src/ui/public-square.js) |
 | Copias y recuperación | Deshacer/rehacer, restaurar y exportar datos | [Almacenamiento](src/core/active-store.js), [recuperación](src/ui/recovery.js) |
 
-El diagrama describe la arquitectura; no es una captura del juego. [Arquitectura detallada](docs/tecnico/arquitectura.md).
+[Arquitectura detallada](docs/tecnico/arquitectura.md).
 
 ## Desarrollo y pruebas
 
@@ -67,7 +75,7 @@ npm run test:browser:all
 npm run test:demo
 ```
 
-La validación del 20 de noviembre de 2026 del paso técnico supera **196 pruebas Node**, los recorridos Chromium de los tres guiones y Electron en desarrollo sobre Mac Apple Silicon. Incluye archivos, revisiones, fallos de cuota, deshacer/rehacer, recuperación, privacidad y actualización offline. Las pruebas usan datos ficticios y perfiles aislados. [Alcance y compatibilidad](docs/tecnico/calidad-y-compatibilidad.md).
+La validación del 20 de noviembre de 2026 supera **196 pruebas Node**, los recorridos Chromium de los tres guiones y Electron en desarrollo sobre Mac Apple Silicon. Incluye archivos, revisiones, fallos de cuota, deshacer/rehacer, recuperación, privacidad y actualización offline. Las pruebas usan datos ficticios y perfiles aislados. [Alcance y compatibilidad](docs/tecnico/calidad-y-compatibilidad.md).
 
 Para escritorio desde fuentes: `npm run desktop:start`. [Construcción y plataformas](docs/tecnico/escritorio.md). Después de cambiar recursos de la app, ejecuta `npm run release:generate`; después de cambiar ayuda estructurada, `npm run docs:generate`. `npm run check` comprueba su coherencia.
 
@@ -87,7 +95,7 @@ El proyecto declara `UNLICENSED`; todavía no se ha elegido una licencia de reut
 
 ## Mantener y preparar cambios
 
-La raíz de `grimorio` es la única fuente de desarrollo. Las notas e histórico privados están en `.local`, ignorado por Git; `node_modules`, `dist` y `output` tampoco se versionan. La copia de fuentes se prepara con `npm run portfolio:prepare` y se comprueba con `npm run portfolio:check`. No edites esa copia.
+La raíz de `grimorio` es la única fuente de desarrollo. Las notas e histórico privados están en `.local`, ignorado por Git; `node_modules`, `dist` y `output` tampoco se versionan. La exportación opcional de fuentes se prepara con `npm run portfolio:prepare` y se comprueba con `npm run portfolio:check`. No edites esa exportación; trabaja sobre esta raíz.
 
 [Guía de desarrollo](CONTRIBUTING.md) · [Organización del proyecto](docs/tecnico/organizacion-del-proyecto.md)
 
