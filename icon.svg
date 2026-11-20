@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title">
+  <title>Grimorio privado · Base 3</title>
+  <rect width="256" height="256" rx="48" fill="#181614"/>
+  <circle cx="128" cy="128" r="88" fill="none" stroke="#c5a369" stroke-width="8"/>
+  <path d="M82 76h56c16 0 28 12 28 28v76c-12-8-25-11-38-11H82z" fill="#2c4d65" stroke="#c5a369" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M128 104v65" stroke="#c5a369" stroke-width="6"/>
+  <circle cx="180" cy="91" r="15" fill="#a84b43"/>
+</svg>

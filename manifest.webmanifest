@@ -1,0 +1,11 @@
+{
+  "name": "Grimorio privado · Base 3",
+  "short_name": "Grimorio Base 3",
+  "description": "Asistente privado y offline de Narrador para los guiones Base 3.",
+  "lang": "es",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#181614",
+  "theme_color": "#181614",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

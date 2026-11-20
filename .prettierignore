@@ -1,0 +1,7 @@
+node_modules
+dist
+output
+src/release.js
+release-manifest.js
+package-lock.json
+.local

@@ -1,0 +1,58 @@
+{
+  "appId": "local.grimorio.base3",
+  "productName": "Grimorio Base 3",
+  "directories": {
+    "output": "dist",
+    "buildResources": "desktop/assets"
+  },
+  "files": [
+    "index.html",
+    "recuperar.html",
+    "icon.svg",
+    "manifest.webmanifest",
+    "src/**/*",
+    "desktop/main.js",
+    "desktop/preload.cjs",
+    "desktop/security.js",
+    "desktop/files.js",
+    "desktop/error.html",
+    "desktop/THIRD_PARTY_NOTICES.md",
+    "package.json",
+    "!**/*.map"
+  ],
+  "asar": true,
+  "npmRebuild": false,
+  "publish": null,
+  "mac": {
+    "target": [
+      {
+        "target": "zip",
+        "arch": ["universal"]
+      }
+    ],
+    "category": "public.app-category.games",
+    "minimumSystemVersion": "13.0",
+    "identity": null,
+    "hardenedRuntime": false,
+    "icon": "desktop/assets/icon.icns",
+    "artifactName": "Grimorio-Base3-${version}-Mac-universal.${ext}"
+  },
+  "win": {
+    "target": [
+      {
+        "target": "portable",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "desktop/assets/icon.ico",
+    "artifactName": "Grimorio-Base3-${version}-Windows.${ext}",
+    "signAndEditExecutable": true,
+    "signExecutable": false
+  },
+  "portable": {
+    "requestExecutionLevel": "user"
+  },
+  "toolsets": {
+    "nsis": "1.2.1"
+  }
+}

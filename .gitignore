@@ -1,0 +1,21 @@
+node_modules/
+dist/
+output/
+.DS_Store
+__pycache__/
+
+# Datos locales, credenciales y herramientas
+.env
+.env.*
+*.pem
+*.key
+*.log
+.venv/
+venv/
+.cache/
+.playwright/
+test-results/
+playwright-report/
+# Registro de preparación y correspondencia: uso interno
+.local/
+docs/portfolio/
