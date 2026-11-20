@@ -1,53 +1,52 @@
-# Documentación del Grimorio privado · Base 3
+# Grimorio documentation
 
-Elige la documentación según lo que necesitas hacer. Los tres guiones son asistentes guiados; sus auditorías reglamentarias continúan abiertas.
+The application interface, character guidance and player guides are in **Spanish**. The main development documents below are in **English**; detailed rules and desktop guides remain in Spanish. The three scripts are guided assistants with ongoing rules audits.
 
-## Preparar una sesión y orientar a otras personas
+## Development documentation — English
 
-- [Empieza aquí](entrega/empieza-aqui.md): entrada para jugadores y futuros narradores.
-- [Qué leer y para qué](entrega/que-leer.md).
-- [Primera partida paso a paso](entrega/primera-partida.md).
-- [Uso rápido](entrega/uso-rapido.md).
-- [Versión, límites y condiciones de uso](entrega/version-y-uso.md).
+- [Project README](../README.md) and [development workflow](../CONTRIBUTING.md).
+- [Architecture](tecnico/arquitectura.md).
+- [Project structure and generated outputs](tecnico/organizacion-del-proyecto.md).
+- [Testing and compatibility](tecnico/calidad-y-compatibilidad.md).
+- [Web demo and deployment](tecnico/demo-web.md).
+- [Resources and credits](tecnico/atribuciones.md).
+- [Third-party notices](../THIRD_PARTY_NOTICES.md).
 
-## Jugadores
+## Using the application — Spanish
 
-- [Primera partida](manuales/general/guia-jugadores-nuevos.md).
-- [Reglas generales](manuales/general/reglas-generales.md).
-- [Trouble Brewing: personajes para jugadores](manuales/guiones/trouble-brewing/personajes-jugadores.md).
-- [Bad Moon Rising: personajes para jugadores](manuales/guiones/bad-moon-rising/personajes-jugadores.md).
-- [Sects & Violets: personajes para jugadores](manuales/guiones/sects-and-violets/personajes-jugadores.md).
+- [Project overview in Spanish](../README.es.md).
+- [Application user guide](manuales/general/guia-del-programa.md).
+- [Saving, files and recovery](manuales/general/guardado-y-recuperacion.md).
+- [Desktop application](manuales/general/aplicacion-de-escritorio.md).
+- [General FAQ](manuales/general/preguntas-frecuentes.md) and [Storyteller guide](manuales/general/guia-narrador.md).
 
-Los PDF breves se generan con `npm run pdf:generate` en output/pdf. Contienen el guion completo y nunca el reparto de una partida. Cada PDF tiene cuatro páginas: Aldeanos, Forasteros, Esbirros y Demonios.
+## Local distribution kits — Spanish
 
-## Narrador
+- [Start here](entrega/empieza-aqui.md).
+- [What to read](entrega/que-leer.md).
+- [First game walkthrough](entrega/primera-partida.md).
+- [Quick start](entrega/uso-rapido.md).
+- [Version, limits and conditions](entrega/version-y-uso.md).
+- [Build an application and guide kit](tecnico/entrega-para-mesa.md).
 
-El [índice de manuales](manuales/README.md) organiza reglas, guías, almanaques completos, preguntas y referencias de mesa. Las hojas breves de jugadores no sustituyen esos manuales.
+## Players and Storytellers — Spanish
 
-## Uso del programa
+The [manual index](manuales/README.md) lists shared rules, script guides, character references and FAQs. Short player sheets do not replace the Storyteller manuals.
 
-- [Guía completa del programa](manuales/general/guia-del-programa.md): pantallas, controles y recorrido de una partida.
+- [Introduction for new players](manuales/general/guia-jugadores-nuevos.md).
+- [General rules](manuales/general/reglas-generales.md).
+- [Trouble Brewing player references](manuales/guiones/trouble-brewing/personajes-jugadores.md).
+- [Bad Moon Rising player references](manuales/guiones/bad-moon-rising/personajes-jugadores.md).
+- [Sects & Violets player references](manuales/guiones/sects-and-violets/personajes-jugadores.md).
 
-- [Aplicación de escritorio](manuales/general/aplicacion-de-escritorio.md): abrir, cerrar y actualizar Windows/Mac.
-- [Guardado y recuperación](manuales/general/guardado-y-recuperacion.md): partida activa, archivos, borradores, cuota, dos ventanas y rescate.
-- [Preguntas generales](manuales/general/preguntas-frecuentes.md) y [guía del Narrador](manuales/general/guia-narrador.md).
-- [README del proyecto](../README.md): ejecución web y órdenes de desarrollo.
+Generate Spanish player PDFs with `npm run pdf:generate` in output/pdf. They describe the full script, not a particular game's roles. Each PDF has four pages: Townsfolk, Outsiders, Minions and Demons.
 
-## Mantenimiento vigente
+## Detailed references — Spanish
 
-- [Organización, archivos heredados y limpieza](tecnico/organizacion-del-proyecto.md).
-
-- [Arquitectura](tecnico/arquitectura.md) e [inventario de módulos](tecnico/inventario-modulos.md).
-- [Calidad y compatibilidad](tecnico/calidad-y-compatibilidad.md).
-- [Escritorio: construcción y matriz real](tecnico/escritorio.md).
-- [Generar una carpeta local con aplicación y manuales](tecnico/entrega-para-mesa.md).
-- [Estado de cobertura](tecnico/estado-de-cobertura.md).
-- [Fuentes de reglas](tecnico/fuentes-reglas.md) y [decisiones reglamentarias](tecnico/decisiones-reglas.md).
-- [Ayuda del Narrador](tecnico/ayuda-narrador.md).
-- Auditorías: [Trouble Brewing](tecnico/auditorias/trouble-brewing.md), [Bad Moon Rising](tecnico/auditorias/bad-moon-rising.md), [Sects & Violets](tecnico/auditorias/sects-and-violets.md) y [transversal](tecnico/auditorias/base3.md).
-- [Mejoras futuras](tecnico/mejoras-futuras.md).
-
-## Demo y recursos
-
-- [Preparación local de la demo](tecnico/demo-web.md).
-- [Recursos y atribuciones](tecnico/atribuciones.md).
+- [Desktop builds and historical platform validation](tecnico/escritorio.md).
+- [Rules coverage](tecnico/estado-de-cobertura.md).
+- [Rules sources](tecnico/fuentes-reglas.md) and [rules decisions](tecnico/decisiones-reglas.md).
+- [Storyteller guidance](tecnico/ayuda-narrador.md).
+- [Generated module inventory](tecnico/inventario-modulos.md).
+- Script audits: [Trouble Brewing](tecnico/auditorias/trouble-brewing.md), [Bad Moon Rising](tecnico/auditorias/bad-moon-rising.md), [Sects & Violets](tecnico/auditorias/sects-and-violets.md) and [cross-script review](tecnico/auditorias/base3.md).
+- [Future improvements](tecnico/mejoras-futuras.md).

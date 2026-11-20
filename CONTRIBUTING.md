@@ -1,10 +1,10 @@
-# Desarrollo y mantenimiento
+# Development and maintenance
 
-Modifica las fuentes del repositorio. Los resultados de construcción de `output` y `dist` se generan a partir de ellas y están excluidos del control de versiones.
+Edit the repository's source files. Build outputs in `output` and `dist` are generated from those sources and excluded from version control.
 
-## Preparar el entorno
+## Set up
 
-Requisitos: Node >=22.12.0, npm y Python 3 para los servidores locales. `.nvmrc` fija la versión comprobada de Node. No es necesario instalar bibliotecas PDF para trabajar en la aplicación web.
+Requirements: Node >=22.12.0, npm and Python 3 for local servers. `.nvmrc` pins the tested Node version. PDF libraries are not required for web development.
 
 ```bash
 npm ci
@@ -12,29 +12,35 @@ npx playwright install chromium
 npm start
 ```
 
-Abre `http://127.0.0.1:4173`. Usa perfiles aislados y nombres ficticios para probar. No utilices una partida personal como fixture o archivo de ejemplo. Exporta tus partidas antes de cambiar de origen o probar migraciones manualmente.
+Open `http://127.0.0.1:4173`. Use isolated profiles and fictional names for testing. Never use a personal game as a fixture. Export games before switching origins or testing migrations manually.
 
-## Hacer una mejora
+## Make a change
 
-1. Modifica las fuentes en src, desktop o las herramientas correspondientes, no sus copias generadas.
-2. Añade o adapta una prueba cuando corrijas un fallo o cambies comportamiento. Para una regla, documenta fuente, efecto esperado y límites; no confundas una regresión con auditoría completa de personajes.
-3. Si cambia la ayuda estructurada, ejecuta `npm run docs:generate`.
-4. Si se añaden o retiran módulos, ejecuta `node scripts/check-module-graph.js --write`.
-5. Si cambian recursos de aplicación, ejecuta `npm run release:generate`.
-6. Ejecuta `npm run check` y el recorrido afectado. Para cambios transversales, ejecuta `npm run test:browser:all`; para escritorio, `npm run test:desktop`.
-7. Reconstruye y comprueba la demo con `npm run test:demo` si cambian recursos o preparación web.
+1. Edit src, desktop or the relevant tools, rather than generated copies.
+2. Add or adjust tests when fixing a bug or changing behaviour. For a rule, document its source, expected effect and limits; a regression test is not a complete character audit.
+3. After changing structured character guidance, run `npm run docs:generate`. Generated player guides remain in Spanish.
+4. After adding or removing modules, run `node scripts/check-module-graph.js --write`.
+5. After changing application resources, run `npm run release:generate`.
+6. Run `npm run check` and the affected workflow. For changes across layers, run `npm run test:browser:all`; for desktop changes, run `npm run test:desktop`.
+7. Rebuild and test the demo with `npm run test:demo` when changing web resources or packaging.
 
-No cambies identificador, origen, perfil de Electron o nombres de bases locales por estética: afectan a compatibilidad y acceso a datos. La versión de package.json representa el producto; no debe incrementarse solo por reorganizar documentos.
+Keep application identity, origin, Electron profile and database names stable: they affect compatibility and access to existing data. Do not bump the product version for documentation-only changes.
 
-## Publicar cambios
+## Documentation languages
 
-Revisa `git status --short` y `git diff --cached --stat` antes de confirmar cambios. Mantén fuera del repositorio credenciales, datos personales y resultados generados.
+The default README and main development documents are in English. Keep `README.md` and `README.es.md` aligned when changing features, requirements, links or limitations. The interface, character guidance, player guides and detailed rules documentation remain in Spanish; do not translate identifiers or generated game content as part of a documentation edit.
 
-El flujo `.github/workflows/pages.yml` construye y publica la demo al actualizar main. Comprueba su resultado en Actions. La [guía de demo](docs/tecnico/demo-web.md) describe la construcción y las pruebas locales.
+Document paths are kept stable even when the text is translated. Follow the language labels in the [documentation index](docs/README.md).
 
-## Antes de una nueva entrega
+## Publish changes
 
-- Actualiza README, cobertura y plataformas solo con resultados realmente comprobados.
-- Conserva atribuciones y revisa permisos según el contenido que se distribuya. El código está declarado `UNLICENSED`; conserva las condiciones de los materiales de terceros.
-- Regenera resultados desde las fuentes. No reutilices binarios antiguos como si incluyeran las mejoras actuales.
-- Revisa que cualquier material incorporado pueda distribuirse bajo sus condiciones respectivas.
+Review `git status --short` and `git diff --cached --stat` before committing. Keep credentials, personal data and generated outputs out of the repository.
+
+The workflow `.github/workflows/pages.yml` builds and publishes the demo when main is updated. Check its result in Actions. The [demo guide](docs/tecnico/demo-web.md) describes local builds and tests.
+
+## Before a release
+
+- Update the README, coverage and platform information using actual validation results.
+- Preserve credits and review the conditions of redistributed content. The code is marked `UNLICENSED`; third-party materials retain their own conditions.
+- Regenerate outputs from source. Do not reuse old binaries as if they contained current changes.
+- Review the distribution conditions of any newly added material.

@@ -1,53 +1,53 @@
-# Organización del proyecto
+# Project structure
 
-## Código y documentación
+## Source and documentation
 
-| Ruta | Responsabilidad |
+| Path | Responsibility |
 | --- | --- |
-| src/app.js | Arranque y composición de la interfaz |
-| src/application | Comandos y coordinación de acciones |
-| src/core | Motor, almacenamiento, migraciones y proyecciones |
-| src/scripts | Datos y políticas de cada guion |
-| src/ui | Pantallas, formularios y adaptación de plataforma |
-| desktop | Proceso principal, puente, seguridad y configuración de Electron |
-| test | Pruebas Node |
-| browser-checks | Recorridos de navegador, almacenamiento, offline y escritorio |
-| scripts | Comprobaciones, generación y empaquetado |
-| docs/manuales | Guías de uso y referencias de personajes |
-| docs/entrega | Fuentes de las guías incluidas en los kits locales |
-| docs/tecnico | Arquitectura, cobertura, construcción y fuentes |
-| .github/workflows | Publicación de la demo con GitHub Actions |
+| src/app.js | Startup and interface composition |
+| src/application | Commands and action coordination |
+| src/core | Engine, storage, migrations and projections |
+| src/scripts | Script-specific data and policies |
+| src/ui | Screens, forms and platform adaptation |
+| desktop | Electron main process, bridge, security and configuration |
+| test | Node tests |
+| browser-checks | Browser, storage, offline and desktop workflows |
+| scripts | Checks, generation and packaging |
+| docs/manuales | Spanish user guides and character references |
+| docs/entrega | Spanish guide sources included in local distribution kits |
+| docs/tecnico | Architecture, coverage, builds and sources; languages listed in the documentation index |
+| .github/workflows | Demo deployment through GitHub Actions |
 
-Los puntos de entrada web permanecen en la raíz. `recuperar.html` permite recuperar datos de forma independiente del arranque principal. `src/release.js` y `release-manifest.js` se generan juntos y se versionan para ejecutar y comprobar la aplicación sin una construcción previa.
+Web entry points stay at the root. `recuperar.html` provides recovery independently of the main startup flow. `src/release.js` and `release-manifest.js` are generated together and committed so the application can run and be checked without a build step first.
 
-Las fachadas pequeñas de src mantienen contratos de importación y compatibilidad. Los manuales de personajes se generan desde los datos estructurados y su coherencia forma parte de las comprobaciones.
+Small facade modules in src preserve import contracts and compatibility. Character guides are generated from structured data and checked for consistency.
 
-## Dependencias y resultados generados
+## Dependencies and generated outputs
 
-| Ruta | Contenido | Cómo obtenerlo |
+| Path | Contents | How to generate |
 | --- | --- | --- |
-| node_modules | Dependencias de desarrollo | npm ci |
-| output/demo | Aplicación web estática | npm run demo:build |
-| output/pdf | Referencias para jugadores en PDF | npm run pdf:generate |
-| dist | Ejecutables y paquetes de escritorio | npm run desktop:build:mac o desktop:build:win |
-| output/entrega | Kits con aplicación y manuales | npm run kit:generate o kit:generate:win |
-| output/qa, output/playwright, output/desktop | Resultados de comprobaciones | Recorridos y herramientas correspondientes |
+| node_modules | Development dependencies | npm ci |
+| output/demo | Static web application | npm run demo:build |
+| output/pdf | Player reference PDFs | npm run pdf:generate |
+| dist | Desktop executables and packages | npm run desktop:build:mac or desktop:build:win |
+| output/entrega | Application and guide kits | npm run kit:generate or kit:generate:win |
+| output/qa, output/playwright, output/desktop | Validation outputs | Relevant workflows and tools |
 
-Estos resultados están excluidos de Git. Edita las fuentes y vuelve a generar las salidas cuando cambien sus entradas. `npm run clean` limpia resultados temporales conocidos y comprueba las copias finales antes de retirar ciertas entregas expandidas.
+These outputs are excluded from Git. Edit source files and regenerate outputs when their inputs change. `npm run clean` removes known temporary results and verifies final copies before removing certain expanded distribution kits.
 
-## Exportación opcional de fuentes
+## Optional source export
 
 ```bash
 npm run portfolio:prepare
 npm run portfolio:check
 ```
 
-Con Node y Python 3, estas órdenes generan y verifican `output/portfolio-source.zip`. La comprobación valida la integridad del ZIP, su lista de archivos y su contenido contra las fuentes. Regenera la exportación después de hacer cambios. El ZIP es una salida de distribución, no otra carpeta de desarrollo.
+With Node and Python 3, these commands create and verify `output/portfolio-source.zip`. Verification checks ZIP integrity, the exact file list and contents against source files. Regenerate after making changes. The ZIP is a distribution output, not another development directory.
 
-## Datos y compatibilidad
+## Data and compatibility
 
-Las partidas están en IndexedDB del navegador o del perfil de Electron. Las preferencias pequeñas utilizan almacenamiento local; los JSON exportados son copias que gestiona el usuario.
+Games are stored in IndexedDB in the browser or Electron profile. Small preferences use local storage; exported JSON files are backups managed by the user.
 
-Un dominio, puerto o navegador distinto utiliza otro almacenamiento. Para cambiar de entorno, exporta e importa la partida. En escritorio se mantienen el origen `grimorio://app`, la identidad de aplicación y el perfil para conservar la compatibilidad entre versiones.
+A different domain, port or browser uses separate storage. Export and import the game when changing environments. Desktop versions preserve the `grimorio://app` origin, application identity and profile for compatibility.
 
-[Desarrollo y mantenimiento](../../CONTRIBUTING.md) · [Arquitectura](arquitectura.md) · [Guardado y recuperación](../manuales/general/guardado-y-recuperacion.md)
+[Development guide](../../CONTRIBUTING.md) · [Architecture](arquitectura.md) · [Saving and recovery (Spanish)](../manuales/general/guardado-y-recuperacion.md)

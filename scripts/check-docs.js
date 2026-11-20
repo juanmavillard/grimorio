@@ -5,6 +5,7 @@ import { renderedCharacterManuals } from "./generate-character-manuals.js";
 const ROOT = resolve(import.meta.dirname, "..");
 const roots = [
   join(ROOT, "README.md"),
+  join(ROOT, "README.es.md"),
   join(ROOT, "CONTRIBUTING.md"),
   join(ROOT, "THIRD_PARTY_NOTICES.md"),
   join(ROOT, "docs"),

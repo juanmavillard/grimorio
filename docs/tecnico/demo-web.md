@@ -1,38 +1,38 @@
-# Preparación de la demo web
+# Web demo
 
-La demo es la misma aplicación estática, sin backend, cuentas ni servidor de partidas. Disponible en [GitHub Pages](https://juanmavillard.github.io/grimorio/).
+The demo is the same static application, without a backend, accounts or a multiplayer server. It is available on [GitHub Pages](https://juanmavillard.github.io/grimorio/). The interface and character guidance are in Spanish.
 
-## Construir y abrir
+## Build and run locally
 
-Con Node >=22.12.0 y Python 3, desde la raíz:
+With Node >=22.12.0 and Python 3, from the project root:
 
 ```bash
 npm run demo:build
 npm run demo:start
 ```
 
-Abre `http://127.0.0.1:4174`. El servidor solo escucha en este equipo y solo sirve `output/demo`. Usa un perfil de navegador separado si quieres aislar estas pruebas de otras partidas. Para detenerlo: Ctrl+C.
+Open `http://127.0.0.1:4174`. The server listens only on this machine and serves `output/demo`. Use a separate browser profile to isolate testing from other games. Stop the server with Ctrl+C.
 
-La construcción verifica las huellas actuales y copia únicamente los archivos declarados en el manifiesto de recursos, el service worker y el aviso de terceros. No modifica las reglas ni sustituye contenido. El resultado contiene los recursos web de ejecución y el aviso de terceros. Al reconstruir se sincroniza únicamente el contenido de la carpeta generada de la demo.
+The build checks current resource hashes and copies the files declared in the release manifest, the service worker and third-party notices. It preserves the application's rules and content. Rebuilding synchronises only the generated demo directory.
 
-## Probar el resultado preparado
+## Test the prepared output
 
 ```bash
 npm run test:demo
 ```
 
-La prueba sirve los archivos generados bajo `/grimorio/` con un puerto local temporal y perfiles nuevos de Chromium. Comprueba inicio, service worker bajo subruta, creación con datos ficticios en tres guiones, persistencia tras recarga, diagnóstico anónimo predeterminado, recuperación offline y separación de almacenamiento entre visitantes. No usa partidas personales.
+The test serves generated files under `/grimorio/` on a temporary local port and uses fresh Chromium profiles. It checks startup, service-worker scope under a subpath, creation with fictional data for three scripts, persistence across reloads, anonymous diagnostics by default, offline recovery and separate storage for different visitors.
 
-Los recorridos completos de reglas e interfaz se mantienen en `npm run test:browser:all`; la prueba de demo verifica el resultado preparado, no reemplaza esa batería.
+Full rules and interface workflows remain in `npm run test:browser:all`; the demo test checks the prepared output rather than replacing that suite.
 
-## Publicación en GitHub Pages
+## Deploy with GitHub Pages
 
-Directorio a servir: `output/demo`, tras ejecutar `npm run demo:build`. No publicar la raíz del proyecto. No requiere instalación en el servidor, variables secretas ni API. Usar HTTPS; localhost es una excepción de desarrollo para service workers. Mantener rutas relativas, tipos MIME correctos para JavaScript y webmanifest, y acceso al service worker y al manifiesto de versión. Evitar caché prolongada de `sw.js` y `release-manifest.js`.
+Serve `output/demo` after running `npm run demo:build`. Do not serve the project root. No server-side installation, secret variables or API are required. Use HTTPS; localhost is a development exception for service workers. Preserve relative paths, correct JavaScript and webmanifest MIME types, and access to the worker and release manifest. Avoid long-lived caches for `sw.js` and `release-manifest.js`.
 
-Se prueba una subruta para permitir alojamientos de proyecto. El flujo `.github/workflows/pages.yml` construye y publica únicamente `output/demo` al subir cambios a main, o mediante ejecución manual en Actions. No hay que subir output o ZIP al repositorio. Si una ejecución falla, revisar sus registros antes de dar por actualizada la demo.
+The workflow `.github/workflows/pages.yml` builds and publishes only `output/demo` when main changes, or when run manually in Actions. Do not commit output or ZIP files to deploy. If a run fails, inspect its logs before assuming the demo has been updated.
 
-## Datos de visitantes
+## Visitor data
 
-El visitante empieza en la preparación normal con nombres ficticios predeterminados y crea su partida. No se incorpora una partida del autor. Los cambios se guardan en su navegador, no se sincronizan con otros visitantes. La interfaz conserva la opción de exportar/importar copias JSON.
+Visitors start with the normal setup screen and default fictional names, then create their own game. No author's game is bundled. Changes are stored in each visitor's browser, not synchronised with other visitors. The interface retains JSON backup import/export.
 
-`127.0.0.1`, `localhost`, distintos puertos o un futuro dominio tendrán almacenamiento separado. El contenido se mantiene al recargar y puede seguir disponible offline; no se promete que desaparezca al cerrar la pestaña. El visitante puede gestionarlo mediante Recuperación o las opciones de almacenamiento del navegador. El proveedor de alojamiento podría registrar peticiones HTTP; la ausencia de telemetría de aplicación no es una promesa sobre registros de terceros.
+`127.0.0.1`, `localhost`, different ports and the public domain use separate storage. Data persists across reloads and may remain available offline; closing a tab does not necessarily remove it. Visitors can manage data through Recovery or browser storage settings. Hosting providers may log HTTP requests; the absence of application telemetry does not describe third-party server logs.

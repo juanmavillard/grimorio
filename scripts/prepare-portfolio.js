@@ -24,6 +24,7 @@ if (kind === "demo") {
 } else {
   files.push(
     "README.md",
+    "README.es.md",
     ".github/workflows/pages.yml",
     "THIRD_PARTY_NOTICES.md",
     "CONTRIBUTING.md",

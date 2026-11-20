@@ -1,33 +1,33 @@
-# Recursos y atribuciones
+# Resources and credits
 
-## Contenido de Blood on the Clocktower
+## Blood on the Clocktower content
 
-Blood on the Clocktower pertenece a The Pandemonium Institute. Grimorio es un proyecto independiente y no oficial.
+Blood on the Clocktower belongs to The Pandemonium Institute. Grimorio is an independent, unofficial project.
 
-| Contenido | Ubicación | Fuentes de referencia |
+| Content | Location | Reference sources |
 | --- | --- | --- |
-| Personajes y resúmenes de habilidades | src/scripts/*/data.js | Wiki oficial y recursos publicados por TPI |
-| Ayuda e interacciones | src/ui/help.js y políticas de guion | Páginas oficiales de personajes y reglas |
-| Orden nocturno y composición | Datos y políticas de guion | Wiki y recursos oficiales |
-| Manuales y referencias de jugadores | docs/manuales | Ayuda estructurada de la aplicación y fuentes enlazadas por personaje |
-| Terminología española | Catálogos y documentación | Wiki y materiales de consulta enlazados por Villacuervos |
+| Characters and ability summaries | src/scripts/*/data.js | Official wiki and TPI resources |
+| Guidance and interactions | src/ui/help.js and script policies | Official character and rules pages |
+| Night order and composition | Script data and policies | Official wiki and resources |
+| Manuals and player references | docs/manuales | Structured application guidance and sources linked for each character |
+| Spanish terminology | Catalogues and documentation | Wiki and reference materials linked by Villacuervos |
 
-Las referencias se detallan en [Fuentes reglamentarias](fuentes-reglas.md). Los resúmenes y traducciones remiten a sus fuentes; no se presentan como contenido del juego de autoría independiente.
+References are listed in [Rules sources (Spanish)](fuentes-reglas.md). Summaries and translations refer to their sources; the underlying game content is not presented as independently authored material.
 
-Los iconos de aplicación están en `icon.svg` y `desktop/assets`. El diagrama del README representa la arquitectura del programa.
+Application icons are in `icon.svg` and `desktop/assets`. The README diagram describes the application's architecture.
 
-## Código y dependencias
+## Code and dependencies
 
-El código propio está declarado `UNLICENSED`. Esta declaración no modifica los derechos o condiciones del contenido del juego ni las licencias de las dependencias.
+The project's own code is marked `UNLICENSED`. This does not change the rights or conditions of game content or dependency licences.
 
-Las versiones y licencias declaradas de las herramientas se recogen en [Avisos de terceros](../../THIRD_PARTY_NOTICES.md) y en `package-lock.json`. La demo estática no incluye las herramientas npm ni las bibliotecas Python usadas para generar materiales.
+Declared tool versions and licences are recorded in [Third-party notices](../../THIRD_PARTY_NOTICES.md) and `package-lock.json`. The static demo does not include npm development tools or Python libraries used to generate materials.
 
-Al distribuir ejecutables Electron deben acompañarlos los avisos de su runtime, incluidos Chromium y Node.js. Los PDF se generan con las bibliotecas fijadas en `scripts/requirements-pdf.txt`.
+Electron executables must retain their runtime notices, including Chromium and Node.js notices. PDFs are generated with the libraries pinned in `scripts/requirements-pdf.txt`.
 
-## Referencias oficiales
+## Official references
 
-- [Política comunitaria de TPI](https://bloodontheclocktower.com/pages/community-created-content-policy).
-- [Términos de uso](https://bloodontheclocktower.com/pages/terms-of-use).
-- [Recursos oficiales](https://release.botc.app/resources/).
+- [TPI Community Created Content Policy](https://bloodontheclocktower.com/pages/community-created-content-policy).
+- [Terms of Use](https://bloodontheclocktower.com/pages/terms-of-use).
+- [Official resources](https://release.botc.app/resources/).
 
-La publicación de este proyecto no implica afiliación ni aprobación de TPI. Cada recurso de terceros mantiene sus condiciones de uso y distribución.
+Publishing this project does not imply affiliation with or approval by TPI. Each third-party resource retains its applicable conditions of use and distribution.

@@ -1,4 +1,4 @@
-name: Publicar demo
+name: Deploy demo
 
 on:
   push:
@@ -22,26 +22,26 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Descargar código
+      - name: Check out source
         uses: actions/checkout@v6
 
-      - name: Preparar Node
+      - name: Set up Node
         uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           package-manager-cache: false
 
-      - name: Preparar demo
+      - name: Build demo
         run: npm run demo:build
 
-      - name: Configurar Pages
+      - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      - name: Preparar archivos para publicar
+      - name: Upload demo artifact
         uses: actions/upload-pages-artifact@v4
         with:
           path: output/demo
 
-      - name: Publicar
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4

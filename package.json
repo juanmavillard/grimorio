@@ -57,7 +57,7 @@
     "prettier": "3.6.2"
   },
   "main": "desktop/main.js",
-  "description": "Asistente privado, local y offline de Narrador para Base 3",
+  "description": "Offline Storyteller companion for in-person Blood on the Clocktower games",
   "author": "Juanma Villard",
   "license": "UNLICENSED"
 }

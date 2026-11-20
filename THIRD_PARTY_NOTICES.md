@@ -1,22 +1,22 @@
-# Autoría y componentes de terceros
+# Authorship and third-party components
 
 ## Blood on the Clocktower
 
-Blood on the Clocktower y su contenido pertenecen a The Pandemonium Institute. Este asistente es un proyecto personal independiente y no oficial; no se declara aprobado por el editor.
+Blood on the Clocktower and its content belong to The Pandemonium Institute. This is an independent, unofficial personal project; no publisher approval is claimed.
 
-El proyecto incorpora nombres, resúmenes en español, orden nocturno, referencias y lógica específica basada en el juego. Fuentes: wiki oficial (https://wiki.bloodontheclocktower.com/), recursos oficiales (https://release.botc.app/resources/) y materiales de consulta enlazados por Villacuervos (https://villacuervos.es/). La procedencia detallada se documenta en el repositorio.
+The project includes names, Spanish summaries, night order, references and game-specific logic. Sources include the [official wiki](https://wiki.bloodontheclocktower.com/), [official resources](https://release.botc.app/resources/) and reference materials linked by [Villacuervos](https://villacuervos.es/). See [Resources and credits](https://github.com/juanmavillard/grimorio/blob/main/docs/tecnico/atribuciones.md) for details.
 
-La disponibilidad pública de esas fuentes no determina por sí sola las condiciones de redistribución de esta aplicación. Referencias: [política comunitaria](https://bloodontheclocktower.com/pages/community-created-content-policy) y [términos de uso](https://bloodontheclocktower.com/pages/terms-of-use).
+Public availability of those sources does not by itself determine redistribution conditions for this application. References: [Community Created Content Policy](https://bloodontheclocktower.com/pages/community-created-content-policy) and [Terms of Use](https://bloodontheclocktower.com/pages/terms-of-use).
 
-## Código propio
+## Project code
 
-El proyecto está declarado `UNLICENSED`. Este aviso no concede una licencia de reutilización del código propio ni de los materiales del juego. No se extiende una eventual licencia del código a contenido de terceros.
+The project is marked `UNLICENSED`. This notice does not grant a reuse licence for the project's own code or game materials. Any future code licence does not automatically extend to third-party content.
 
-## Herramientas de desarrollo
+## Development tools
 
-Declaraciones verificadas en el bloqueo y los paquetes instalados el 20 de noviembre de 2026:
+Declarations checked against the lockfile and installed packages on 20 November 2026:
 
-| Componente | Versión | Licencia declarada |
+| Component | Version | Declared licence |
 | --- | --- | --- |
 | Electron | 45.2.3 | MIT |
 | electron-builder | 26.18.0 | MIT |
@@ -25,10 +25,10 @@ Declaraciones verificadas en el bloqueo y los paquetes instalados el 20 de novie
 | ESLint | 9.39.1 | MIT |
 | Prettier | 3.6.2 | MIT |
 
-Estas herramientas no se copian a la demo web estática. Sus licencias y avisos permanecen en los paquetes instalados; si se redistribuyen, deben conservarse los textos exigidos. Este resumen no sustituye sus licencias. El bloqueo conserva versiones y declaraciones de las dependencias transitivas.
+These tools are not copied into the static web demo. Their licences and notices remain in the installed packages and must be retained as required if redistributed. This summary does not replace those licences. The lockfile records transitive dependency versions and licence declarations.
 
-## Escritorio y PDF
+## Desktop and PDF generation
 
-Los ejecutables Electron incorporan Chromium y Node.js con sus propios avisos, incluidos `LICENSE` y `LICENSES.chromium.html`; los paquetes requieren revisión de sus archivos reales.
+Electron executables include Chromium and Node.js with their own notices, including `LICENSE` and `LICENSES.chromium.html`. Actual package contents need to be reviewed when preparing a release.
 
-Los generadores PDF declaran reportlab 5.1.0, pypdf 7.0.0 y Markdown 3.9 en el archivo de requisitos. Esas bibliotecas y los PDF no forman parte de la demo web. Al redistribuir herramientas o materiales generados, deben revisarse también los avisos de sus dependencias.
+PDF generators declare reportlab 5.1.0, pypdf 7.0.0 and Markdown 3.9 in the requirements file. Those libraries and generated PDFs are not part of the web demo. When redistributing tools or generated materials, review their dependency notices as well.

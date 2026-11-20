@@ -1,75 +1,75 @@
-# Arquitectura
+# Architecture
 
-## Sistema y límites
+## System boundaries
 
-Grimorio privado es una aplicación local: JavaScript modular, tres paquetes Base 3, interfaz web y envoltura Electron. No hay un servidor de negocio. En navegador, el servidor local solo entrega archivos; Electron entrega los recursos del paquete desde `grimorio://app/`.
+Grimorio is a local application: modular JavaScript, three Base 3 script packages, a web interface and an Electron wrapper. There is no business backend. The browser's local server only serves files; Electron serves packaged resources through `grimorio://app/`.
 
 ```mermaid
 flowchart TD
-    UI[Interfaz y modelos de formulario] --> APP[Servicio dispatch]
-    APP --> RULES[Motor y paquetes de guion]
-    APP --> REPO[Repositorio con revisión]
+    UI[Interface and form models] --> APP[Dispatch service]
+    APP --> RULES[Engine and script packages]
+    APP --> REPO[Revision-aware repository]
     REPO --> DB[(IndexedDB 2)]
-    RULES --> PROJ[Proyecciones privadas y públicas]
+    RULES --> PROJ[Private and public projections]
     PROJ --> UI
-    RESCUE[Recuperación independiente] --> DB
-    DESKTOP[Electron: archivos y ciclo de vida] --> UI
+    RESCUE[Independent recovery] --> DB
+    DESKTOP[Electron files and lifecycle] --> UI
 ```
 
-## Responsabilidades y contratos
+## Responsibilities and contracts
 
-| Capa | Autoridad y responsabilidad |
+| Layer | Authority and responsibility |
 | --- | --- |
-| Interfaz | Presentación, foco y borradores. No modifica la partida confirmada. |
-| Aplicación | Recibe comandos de datos, prepara una copia, valida, confirma decisiones y publica tras guardar. |
-| Motor y guiones | Fases, jugadores, muertes, estados y resolución reglamentaria. Sin DOM ni almacenamiento. |
-| Repositorio | Estado confirmado, revisión, transacciones, deshacer y recuperación. |
-| Proyecciones | Datos públicos por lista cerrada, diagnóstico anónimo y ventanas de historial. |
-| Escritorio | Recursos propios, puente limitado de archivos, instancia única y cierre seguro. |
-| PWA | Conjunto coherente de recursos versionados, independiente de IndexedDB. |
+| Interface | Presentation, focus and drafts; does not mutate confirmed game state. |
+| Application | Receives data commands, prepares a copy, validates, confirms decisions and publishes after saving. |
+| Engine and scripts | Phases, players, deaths, states and rules; no DOM or storage access. |
+| Repository | Confirmed state, revisions, transactions, undo and recovery. |
+| Projections | Allowlisted public data, anonymous diagnostics and history windows. |
+| Desktop | Packaged resources, restricted file bridge, single instance and coordinated shutdown. |
+| PWA | A coherent set of versioned resources, independent of IndexedDB. |
 
-`dispatch(command)` captura la revisión antes de entrar en su cola. Pasa `expectedRevision` a todas las escrituras. El repositorio comprueba esa revisión al empezar la operación serializada y compara el registro guardado dentro de la transacción. Una cancelación, validación fallida, cuota o conflicto conserva el estado anterior. Las funciones antiguas de persistencia mantienen sus firmas con opciones adicionales; las pantallas usan comandos.
+`dispatch(command)` captures the revision before entering its queue and passes `expectedRevision` to writes. The repository checks that revision when starting the serialised operation and compares the stored record within the transaction. Cancellation, validation errors, quota failures and conflicts preserve the previous state. Legacy persistence functions retain their signatures with additional options; screens use commands.
 
-Las decisiones nocturnas contienen `information` y `decisions`, no selectores HTML. La interfaz convierte controles en esos datos; cambiar un identificador del DOM no altera el contrato del motor.
+Night actions contain `information` and `decisions`, not HTML selectors. The interface converts controls into those data structures, so a DOM identifier change does not alter the engine contract.
 
-## Fuente de verdad
+## Sources of truth
 
-| Datos | Autoridad |
+| Data | Authority |
 | --- | --- |
-| Partida confirmada | Repositorio; JSON de partida 4. |
-| Borradores | Modelos sin confirmar y campos por formulario, pestaña y revisión. |
-| Historial | Explica hechos; no reconstruye las reglas buscando textos. |
-| Recordatorios derivados | Se calculan desde los estados y efectos de origen. |
-| Recordatorios narrativos | Marcadores privados editables. |
-| Preferencias | Almacenamiento pequeño e independiente de la partida. |
-| Plaza y hojas para jugadores | Proyecciones públicas que excluyen datos privados de una partida. |
+| Confirmed game | Repository; game JSON schema 4. |
+| Drafts | Unconfirmed models and fields per form, tab and revision. |
+| History | Describes facts; rules are not reconstructed by searching log text. |
+| Derived reminders | Computed from states and their originating effects. |
+| Storyteller reminders | Editable private markers. |
+| Preferences | Small storage separate from the game. |
+| Public square and player sheets | Public projections excluding private game data. |
 
-La preparación recupera el modelo antes de dibujar: guion, reparto, nombres, título, preferencias de preparación y reparto secreto. La asignación distingue personajes ya confirmados de decisiones pendientes. Noche, voto y ficha conservan campos sin aplicar habilidades al restaurarlos. Una revisión diferente requiere revisión explícita del borrador.
+Setup restores its model before rendering: script, roles, names, title, setup preferences and secret dealing. Assignment distinguishes confirmed characters from pending decisions. Night, voting and player forms restore fields without applying abilities. A different revision requires an explicit draft review.
 
-## Datos y recuperación
+## Persistence and recovery
 
-IndexedDB 2 contiene `state` y `drafts`. `state.active` incluye partida, revisión, deshacer, rehacer, recuperación y originales dañados. Se conservan como máximo diez instantáneas por pila y tres puntos dentro de 2 MiB auxiliares. Nunca se recorta el historial activo para cumplir ese presupuesto.
+IndexedDB version 2 contains `state` and `drafts`. `state.active` includes the game, revision, undo, redo, recovery points and damaged originals. Each undo/redo stack holds up to ten snapshots; recovery holds up to three points, within a 2 MiB auxiliary budget. Active history is never truncated to meet that budget.
 
-El rescate independiente lee estado y borradores en una transacción de lectura, añade las preferencias y claves heredadas y conserva por separado los borradores solo en memoria. No importa el motor ni inicializa una partida sobre un registro corrupto. La limpieza explícita conserva la partida activa, verifica revisión y comunica el resultado a otras pestañas. Sus operaciones pendientes bloquean un cierre normal de escritorio.
+Independent recovery reads state and drafts in a read transaction, adds preferences and legacy keys, and preserves memory-only drafts separately. It does not import the engine or initialise a game over a corrupt record. Explicit cleanup preserves the active game, checks the revision and notifies other tabs. Pending recovery operations block normal desktop shutdown.
 
-El formato JSON sigue en 4. La validación actual no convierte textos inválidos en información ficticia; las reparaciones por defecto pertenecen a las migraciones documentadas de v1-v3. La duplicación heredada `history/events` se admite; al guardar se omite la segunda copia si ambas son iguales y se repone al leer.
+The game JSON schema remains version 4. Validation does not turn invalid text into invented history; default repairs belong to the documented v1–v3 migrations. Legacy `history/events` duplication is supported: when both are identical, the second copy is omitted on save and restored on read.
 
-## Paquetes de guion
+## Script packages
 
-Cada guion declara catálogo, composición, despertares y políticas de preparación, habilidad, información, noche, día y muerte. El motor coordina hechos y consulta excepciones del paquete. Las fachadas cortas conservan las exportaciones históricas. Mover archivos no introduce una migración.
+Each script declares its catalogue, composition, night order and policies for setup, abilities, information, night, day and death. The engine coordinates facts and consults package-specific exceptions. Small facade modules preserve historical exports; moving a file does not imply a data migration.
 
-Las muertes distinguen intento, supervivencia, muerte y registro especial. Las transformaciones limpian efectos y registran antes/después. Las decisiones ambiguas se mantienen privadas y explícitas. La corrección avanzada registra un ajuste con motivo; no pretende resolver una habilidad.
+Deaths distinguish attempts, survival, actual death and special registration. Transformations clear effects and record before/after state. Ambiguous decisions remain private and explicit. Advanced corrections record a reason rather than pretending to resolve an ability.
 
-## Interfaz, privacidad y rendimiento
+## Interface, privacy and performance
 
-El temporizador actualiza su contador sin reconstruir formularios. Los diálogos propios admiten teclado y se retiran del documento al entrar en Plaza/Tapar. La Plaza recibe únicamente su proyección. La revelación requiere resultado confirmado.
+The timer updates its counter without rebuilding forms. Custom dialogs support keyboard use and are removed when entering the public square or privacy screen. The square receives only its public projection. Revealing roles requires a confirmed outcome.
 
-El historial muestra 50 registros por página y reutiliza su proyección por instantánea; los registros completos siguen disponibles al exportar. Las pruebas extensas miden tamaño y latencia. No se introduce almacenamiento incremental en esta versión.
+History shows 50 entries per page and reuses projections for a given snapshot. Full history remains available in exports. Long-game workflows measure size and latency; this version does not introduce incremental storage.
 
-## Recursos y plataformas
+## Resources and platforms
 
-La PWA instala un conjunto con huellas y espera un momento seguro para activar una actualización. Electron no registra ese worker: utiliza los recursos incluidos. Mantiene identificador, origen y perfil al sustituir la aplicación. El renderer no tiene Node ni acceso directo al disco.
+The PWA installs a resource set with hashes and waits for a safe point before activating an update. Electron does not register that worker: it uses bundled resources. Replacing the application preserves identity, origin and profile. Its renderer has neither Node integration nor direct disk access.
 
-Consulta [escritorio](escritorio.md), [calidad y compatibilidad](calidad-y-compatibilidad.md) e [inventario de módulos](inventario-modulos.md). Las limitaciones vigentes se recogen en cobertura y compatibilidad.
+See [testing and compatibility](calidad-y-compatibilidad.md), [desktop builds (Spanish)](escritorio.md) and the [module inventory (Spanish)](inventario-modulos.md). Current platform and rules limitations are documented separately.
 
-La [organización del proyecto](organizacion-del-proyecto.md) distingue código activo, compatibilidad, herramientas y resultados generados. Los programas de dist y las entregas de output son productos de construcción; el perfil local sigue siendo la única ubicación de la partida confirmada.
+[Project structure](organizacion-del-proyecto.md) distinguishes source, compatibility modules, tools and generated outputs. Packages in dist and output are build products; confirmed game data stays in the local profile.

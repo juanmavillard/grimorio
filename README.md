@@ -1,62 +1,66 @@
 # Grimorio
 
-Asistente de Narrador para partidas presenciales de **Blood on the Clocktower**. Reúne preparación, personajes, fases, votaciones y notas en un dispositivo, con guardado local y funcionamiento offline tras la primera carga.
+**English** · [Español](README.es.md)
 
-**[Probar la demo](https://juanmavillard.github.io/grimorio/)** · [Guía de uso](docs/manuales/general/guia-del-programa.md) · [Arquitectura](docs/tecnico/arquitectura.md)
+An offline Storyteller companion for in-person **Blood on the Clocktower** games. Manage setup, characters, phases, votes and notes on one device, with local persistence and offline access after the first complete load.
 
-Proyecto personal de **Juanma Villard**, desarrollado con JavaScript, IndexedDB y Electron. No es una aplicación oficial de The Pandemonium Institute.
+**[Try the web demo](https://juanmavillard.github.io/grimorio/)** · [Architecture](docs/tecnico/arquitectura.md) · [User guide (Spanish)](docs/manuales/general/guia-del-programa.md)
 
-## Demo online
+A personal project by **Juanma Villard**, built with JavaScript, IndexedDB and Electron. This is an unofficial project, independent of The Pandemonium Institute.
 
-Abre la demo y prepara una partida con nombres ficticios. No requiere cuenta ni instalación. Los datos se guardan en tu navegador; no se comparten con otros visitantes. Para conservarlos o trasladarlos a otro equipo, exporta una copia JSON.
+**Language:** the application interface, character guidance and player guides are currently available in **Spanish**. The main development documentation is in English.
 
-El funcionamiento offline requiere completar la primera carga. Para volver a empezar, puedes gestionar los datos desde Recuperación.
+## Try it
 
-## Qué resuelve
+Open the demo and create a game with fictional player names. No account or installation is required. Game data stays in your browser and is not shared with other visitors. Export a JSON backup to keep a copy or move to another device.
 
-Dirigir una partida implica coordinar reglas y cambios de estado sin revelar información secreta. El Grimorio ofrece preparación para 5–15 jugadores, reparto secreto en un dispositivo, noches guiadas, día y votaciones, historial y una Plaza pública que recibe solo los datos que puede mostrar.
+Offline use requires a complete initial load. Use the application's recovery screen, labelled **Recuperación**, to manage stored data.
 
-Incluye Trouble Brewing, Bad Moon Rising y Sects & Violets, con 72 personajes. Las decisiones ambiguas siguen en manos del Narrador; las interacciones reglamentarias no están auditadas de forma exhaustiva.
+## What it does
 
-## Probar en local
+Running a game involves coordinating rules and state changes while keeping secret information private. Grimorio supports setup for 5–15 players, secret role dealing on a shared device, guided nights, daytime nominations and voting, history, and a public view built from a restricted projection of game data.
 
-Con Python 3, desde la raíz del proyecto:
+It includes **Trouble Brewing, Bad Moon Rising and Sects & Violets**, covering 72 characters. Ambiguous decisions remain with the Storyteller; character interactions have not been exhaustively audited.
+
+## Run locally
+
+With Python 3, from the project root:
 
 ```bash
 python3 -m http.server 4173 --bind 127.0.0.1
 ```
 
-Abre `http://127.0.0.1:4173` y crea una partida con nombres ficticios. Detén el servidor con Ctrl+C. Con Node y npm, `npm start` hace lo mismo. No necesitas instalar dependencias para este uso web.
+Open `http://127.0.0.1:4173` and create a game with fictional names. Stop the server with Ctrl+C. If Node and npm are installed, `npm start` runs the same server. Installing development dependencies is not required to serve the web application this way.
 
-## Arquitectura y decisiones
+## Architecture and decisions
 
-JavaScript modular, HTML/CSS propios, IndexedDB, service worker y adaptación de escritorio con Electron. La web no tiene dependencias externas de ejecución, cuentas, sincronización remota ni telemetría.
+Modular JavaScript, HTML/CSS, IndexedDB, a service worker and an Electron desktop wrapper. The web application has no external runtime dependencies, accounts, remote synchronisation or telemetry.
 
 ```mermaid
 flowchart LR
-    UI[Interfaz privada] --> APP[Servicio de comandos]
-    APP --> CORE[Motor y políticas por guion]
-    APP --> STORE[IndexedDB y recuperación]
-    STORE --> STATE[Estado confirmado]
+    UI[Private interface] --> APP[Command service]
+    APP --> CORE[Engine and script policies]
+    APP --> STORE[IndexedDB and recovery]
+    STORE --> STATE[Confirmed state]
     STATE --> UI
-    STATE --> PUBLIC[Proyección pública]
-    PUBLIC --> PLAZA[Plaza pública]
+    STATE --> PUBLIC[Public projection]
+    PUBLIC --> SQUARE[Public square]
 ```
 
-| Decisión | Propósito | Código |
+| Decision | Purpose | Code |
 | --- | --- | --- |
-| Comandos y políticas por guion | Separar acciones, reglas e interfaz | [Servicio](src/application/service.js), [guiones](src/core/scripts.js) |
-| Guardar antes de publicar estado | Evitar mostrar como confirmado un cambio no guardado | [Almacenamiento](src/core/active-store.js) |
-| Revisiones y transacciones | Rechazar operaciones basadas en un estado obsoleto | [Almacenamiento](src/core/active-store.js) |
-| Validación y migraciones | Rechazar archivos corruptos y leer formatos anteriores | [Archivos](src/core/game-files.js), [migraciones](src/core/migrations.js) |
-| Proyección pública | Mostrar la mesa sin roles, notas ni estados privados | [Motor](src/core/engine.js), [vista](src/ui/public-square.js) |
-| Copias y recuperación | Deshacer/rehacer, restaurar y exportar datos | [Almacenamiento](src/core/active-store.js), [recuperación](src/ui/recovery.js) |
+| Commands and script policies | Separate actions, rules and presentation | [Service](src/application/service.js), [scripts](src/core/scripts.js) |
+| Persist before publishing state | Avoid presenting an unsaved change as confirmed | [Repository](src/core/active-store.js) |
+| Revisions and transactions | Reject actions based on stale state | [Repository](src/core/active-store.js) |
+| Validation and migrations | Reject corrupt files and read older formats | [Game files](src/core/game-files.js), [migrations](src/core/migrations.js) |
+| Public projections | Show the table without secret roles, notes or private states | [Engine](src/core/engine.js), [view](src/ui/public-square.js) |
+| Undo and recovery | Restore earlier state and export backups | [Repository](src/core/active-store.js), [recovery](src/ui/recovery.js) |
 
-[Arquitectura detallada](docs/tecnico/arquitectura.md).
+[Detailed architecture](docs/tecnico/arquitectura.md).
 
-## Desarrollo y pruebas
+## Development and testing
 
-Node **>=22.12.0**; versión comprobada **26.13.1** con npm **11.20.0**, fijada en `.nvmrc`. Python 3 para los servidores locales (comprobado: 3.15.2). Navegador moderno con JavaScript, IndexedDB y service workers. No se ha probado toda la matriz de versiones admitidas.
+Node **>=22.12.0**; tested with **26.13.1** and npm **11.20.0**. `.nvmrc` pins the tested Node version. Python 3 is used for local servers (tested: 3.15.2). The browser needs JavaScript, IndexedDB and service workers. Not every supported runtime version has been tested.
 
 ```bash
 npm ci
@@ -66,24 +70,24 @@ npm run test:browser:all
 npm run test:demo
 ```
 
-La validación del 20 de noviembre de 2026 supera **196 pruebas Node**, los recorridos Chromium de los tres guiones y Electron en desarrollo sobre Mac Apple Silicon. Incluye archivos, revisiones, fallos de cuota, deshacer/rehacer, recuperación, privacidad y actualización offline. Las pruebas usan datos ficticios y perfiles aislados. [Alcance y compatibilidad](docs/tecnico/calidad-y-compatibilidad.md).
+Validation on **20 November 2026** passed **196 Node tests**, Chromium workflows for all three scripts, and Electron development workflows on Apple Silicon Mac. Coverage includes files, revisions, storage quota failures, undo/redo, recovery, privacy and offline updates. Tests use fictional data and isolated profiles. [Testing scope and compatibility](docs/tecnico/calidad-y-compatibilidad.md).
 
-Para escritorio desde fuentes: `npm run desktop:start`. [Construcción y plataformas](docs/tecnico/escritorio.md). Después de cambiar recursos de la app, ejecuta `npm run release:generate`; después de cambiar ayuda estructurada, `npm run docs:generate`. `npm run check` comprueba su coherencia.
+Run the desktop application from source with `npm run desktop:start`. [Desktop builds and platforms (Spanish)](docs/tecnico/escritorio.md). See [CONTRIBUTING](CONTRIBUTING.md) for the development workflow.
 
-## Límites y datos
+## Limitations and data
 
-- Una partida activa por origen y navegador; sin partidas remotas multiusuario, Viajeros, Fabled ni guiones arbitrarios importables.
-- Auditorías de personajes e interacciones abiertas. Las pruebas de software no certifican todas las combinaciones de reglas. [Estado de cobertura](docs/tecnico/estado-de-cobertura.md).
-- La primera carga web debe completarse antes del uso offline; no abrir como archivo HTML. `localhost`, `127.0.0.1` y distintos puertos tienen almacenamiento separado: exporta e importa la partida al cambiar de origen.
-- Almacenamiento local sin cifrado de aplicación. Los archivos de partida contienen información privada; los diagnósticos se exportan anónimos por defecto.
-- Ejecución real en Windows e Intel, Safari/iOS y accesibilidad manual siguen pendientes. La validación reciente de escritorio corresponde a ejecución desde fuentes en Mac Apple Silicon.
+- One active game per browser origin; no remote multiplayer, Travellers, Fabled or arbitrary imported scripts.
+- Rules and character-interaction audits remain open. Software tests do not certify every rules combination. [Rules coverage (Spanish)](docs/tecnico/estado-de-cobertura.md).
+- Complete the first load before using the web application offline. Do not open the HTML file directly. `localhost`, `127.0.0.1` and different ports use separate storage: export and import your game when switching origins.
+- Local storage is not encrypted by the application. Game exports contain private information; diagnostics are anonymous by default.
+- Real Windows and Intel Mac execution, Safari/iOS and manual accessibility checks remain pending. Recent desktop validation covers execution from source on Apple Silicon Mac.
 
-## Autoría, fuentes y licencia
+## Credits and licence
 
-Blood on the Clocktower pertenece a **The Pandemonium Institute**. Los personajes, habilidades y referencias reglamentarias proceden de la wiki oficial y otros recursos documentados en [Fuentes reglamentarias](docs/tecnico/fuentes-reglas.md). Este proyecto no implica afiliación ni aprobación del editor.
+Blood on the Clocktower belongs to **The Pandemonium Institute**. Characters, abilities and rules references are based on the official wiki and other documented [rules sources (Spanish)](docs/tecnico/fuentes-reglas.md). This project does not imply affiliation with or approval by the publisher.
 
-El código se distribuye como `UNLICENSED`. Los materiales de TPI y las dependencias mantienen sus condiciones respectivas. [Avisos de terceros](THIRD_PARTY_NOTICES.md) · [Recursos y atribuciones](docs/tecnico/atribuciones.md).
+The code is marked `UNLICENSED`. TPI materials and dependencies retain their respective conditions. [Third-party notices](THIRD_PARTY_NOTICES.md) · [Resources and credits](docs/tecnico/atribuciones.md).
 
-## Documentación
+## Documentation
 
-[Guía del programa](docs/manuales/general/guia-del-programa.md) · [Guardado y recuperación](docs/manuales/general/guardado-y-recuperacion.md) · [Índice completo](docs/README.md) · [Desarrollo y mantenimiento](CONTRIBUTING.md)
+[Documentation index](docs/README.md) · [Development guide](CONTRIBUTING.md) · [Project structure](docs/tecnico/organizacion-del-proyecto.md) · [User guide (Spanish)](docs/manuales/general/guia-del-programa.md) · [Saving and recovery (Spanish)](docs/manuales/general/guardado-y-recuperacion.md)
