@@ -1,63 +1,53 @@
-# Organización y mantenimiento del proyecto
+# Organización del proyecto
 
-La carpeta `grimorio` es la única fuente de desarrollo. Edita aquí y conserva las copias preparadas como resultados regenerables. No desarrolles sobre la exportación `output/portfolio-source.zip` ni `output/demo`.
-
-## Lo que se versiona
+## Código y documentación
 
 | Ruta | Responsabilidad |
 | --- | --- |
-| src/application, src/core, src/scripts, src/ui | Comandos, motor, datos, reglas e interfaz |
-| src/app.js | Composición y arranque |
-| desktop | Implementación de escritorio, puente, seguridad, iconos y configuración |
-| test, browser-checks | Pruebas Node y recorridos de navegador/escritorio |
-| scripts | Comprobaciones, generación, empaquetado y preparación |
-| docs/manuales | Guías vigentes y referencias generadas |
-| docs/entrega | Fuentes de las guías que utiliza el generador de kits |
-| docs/tecnico | Arquitectura, pruebas, cobertura, fuentes, atribuciones y mantenimiento |
-| README.md, CONTRIBUTING.md | Presentación y ciclo de cambios |
-| package.json, package-lock.json, .nvmrc | Herramientas y entorno reproducible |
-| .gitignore, .gitattributes, .prettierignore, eslint.config.js | Política de archivos y comprobaciones |
+| src/app.js | Arranque y composición de la interfaz |
+| src/application | Comandos y coordinación de acciones |
+| src/core | Motor, almacenamiento, migraciones y proyecciones |
+| src/scripts | Datos y políticas de cada guion |
+| src/ui | Pantallas, formularios y adaptación de plataforma |
+| desktop | Proceso principal, puente, seguridad y configuración de Electron |
+| test | Pruebas Node |
+| browser-checks | Recorridos de navegador, almacenamiento, offline y escritorio |
+| scripts | Comprobaciones, generación y empaquetado |
+| docs/manuales | Guías de uso y referencias de personajes |
+| docs/entrega | Fuentes de las guías incluidas en los kits locales |
+| docs/tecnico | Arquitectura, cobertura, construcción y fuentes |
+| .github/workflows | Publicación de la demo con GitHub Actions |
 
-Se conservan los puntos de entrada web en la raíz. `recuperar.html` es una entrada independiente para rescatar datos; no es una copia innecesaria. `src/release.js` y `release-manifest.js` se generan juntos, pero permanecen versionados para permitir ejecutar la aplicación sin una construcción previa.
+Los puntos de entrada web permanecen en la raíz. `recuperar.html` permite recuperar datos de forma independiente del arranque principal. `src/release.js` y `release-manifest.js` se generan juntos y se versionan para ejecutar y comprobar la aplicación sin una construcción previa.
 
-Las fachadas pequeñas en src conservan contratos de importación y compatibilidad. Los manuales generados son comprobados contra su fuente estructurada: no se retiran solo por ser derivados. Las pruebas se mantienen como parte del proyecto.
+Las fachadas pequeñas de src mantienen contratos de importación y compatibilidad. Los manuales de personajes se generan desde los datos estructurados y su coherencia forma parte de las comprobaciones.
 
-## Lo que no se versiona
+## Dependencias y resultados generados
 
-| Ruta | Contenido | Mantenimiento |
+| Ruta | Contenido | Cómo obtenerlo |
 | --- | --- | --- |
-| .local/portfolio | Decisiones, revisión de archivos y consulta a TPI | Archivo privado; conservar copia de seguridad propia |
-| .local/archivo | Histórico y matriz reglamentaria detallada | Privado; los límites vigentes se resumen en cobertura |
-| node_modules | Dependencias instaladas | Recrear con npm ci |
-| dist | Ejecutables y productos de empaquetado | Reconstruir y validar según plataforma |
-| output/demo | Demo estática | Regenerar con npm run demo:build |
-| output/portfolio-source.zip | Copia opcional para revisar los archivos que irían a GitHub | Regenerar con npm run portfolio:prepare; nunca editar aquí |
-| output/pdf, output/entrega | PDF y kits generados | Regenerar con los comandos documentados |
-| output/qa, output/playwright, output/desktop | Resultados de pruebas y capturas | Temporales; revisar antes de limpiar |
+| node_modules | Dependencias de desarrollo | npm ci |
+| output/demo | Aplicación web estática | npm run demo:build |
+| output/pdf | Referencias para jugadores en PDF | npm run pdf:generate |
+| dist | Ejecutables y paquetes de escritorio | npm run desktop:build:mac o desktop:build:win |
+| output/entrega | Kits con aplicación y manuales | npm run kit:generate o kit:generate:win |
+| output/qa, output/playwright, output/desktop | Resultados de comprobaciones | Recorridos y herramientas correspondientes |
 
-Ignorado por Git no significa cifrado ni copia de seguridad. No publiques la carpeta de trabajo completa mediante un arrastre a GitHub o al alojamiento. La demo debe servir solo su directorio preparado. No añadas claves, perfiles ni partidas personales al código.
+Estos resultados están excluidos de Git. Edita las fuentes y vuelve a generar las salidas cuando cambien sus entradas. `npm run clean` limpia resultados temporales conocidos y comprueba las copias finales antes de retirar ciertas entregas expandidas.
 
-## Preparación y comprobación de fuentes
+## Exportación opcional de fuentes
 
 ```bash
 npm run portfolio:prepare
 npm run portfolio:check
 ```
 
-La primera orden prepara un ZIP con Python 3 a partir de rutas seleccionadas. La segunda comprueba integridad, lista exacta y contenido contra el original: detecta archivos añadidos, perdidos o desactualizados. Ni la carpeta privada ni los resultados/dependencias entran en esa selección. Esta copia sirve para inspección o entrega; el desarrollo futuro se hace en la raíz, que será la raíz del repositorio Git.
-
-La selección no decide permisos de contenido ni licencia. Antes de una publicación real hay que resolver esas cuestiones y revisar el estado de Git.
+Con Node y Python 3, estas órdenes generan y verifican `output/portfolio-source.zip`. La comprobación valida la integridad del ZIP, su lista de archivos y su contenido contra las fuentes. Regenera la exportación después de hacer cambios. El ZIP es una salida de distribución, no otra carpeta de desarrollo.
 
 ## Datos y compatibilidad
 
-Las partidas permanecen en IndexedDB del navegador o del perfil de Electron, fuera de las carpetas anteriores. El nombre de carpeta no define el origen web o el perfil de escritorio. No se han cambiado `grimorio://app`, identificador de la aplicación, nombre del perfil ni esquema de almacenamiento.
+Las partidas están en IndexedDB del navegador o del perfil de Electron. Las preferencias pequeñas utilizan almacenamiento local; los JSON exportados son copias que gestiona el usuario.
 
-Al abrir la web en otro dominio, puerto o navegador se usa otro almacenamiento. Exporta una copia desde el origen anterior antes de cambiar. Renombrar la carpeta por sí solo no traslada ni borra partidas.
+Un dominio, puerto o navegador distinto utiliza otro almacenamiento. Para cambiar de entorno, exporta e importa la partida. En escritorio se mantienen el origen `grimorio://app`, la identidad de aplicación y el perfil para conservar la compatibilidad entre versiones.
 
-## Limpieza y construcción
-
-`npm run clean` conserva resultados finales según sus comprobaciones y limpia rutas temporales conocidas; no es una orden de preparación para GitHub. No accede a `.local` ni a los perfiles de juego. No guardes documentos personales en rutas de QA que se puedan limpiar.
-
-PDF y kits: `npm run docs:generate`, `npm run pdf:generate`, `npm run kit:generate` o `npm run kit:generate:win`. Escritorio: `npm run desktop:build:mac` o `npm run desktop:build:win`. La generación no autoriza distribución ni certifica ejecución en otra plataforma.
-
-Consulta [cómo mantener cambios](../../CONTRIBUTING.md), [calidad](calidad-y-compatibilidad.md), [escritorio](escritorio.md) y [cobertura](estado-de-cobertura.md). Los paquetes existentes pueden corresponder a versiones anteriores: reconstruirlos antes de una nueva entrega.
+[Desarrollo y mantenimiento](../../CONTRIBUTING.md) · [Arquitectura](arquitectura.md) · [Guardado y recuperación](../manuales/general/guardado-y-recuperacion.md)

@@ -56,7 +56,7 @@ La PWA requiere completar la primera carga y cachear recursos antes del uso sin 
 
 Los 72 resúmenes se generan desde publicCharacterSheet(scriptId), sin argumento de partida ni ayuda privada. Markdown y PDF comparten esa proyección. Para preparar el generador de PDF usa un entorno Python separado e instala `scripts/requirements-pdf.txt`; define GRIMORIO_PDF_PYTHON con su intérprete y ejecuta `npm run pdf:generate`.
 
-Se verifican 22/25/25 personajes, lista cerrada de campos, texto seleccionable, cuatro páginas por guion, una por categoría (Aldeanos, Forasteros, Esbirros y Demonios) y fuentes. Los PDF se renderizan y se revisan visualmente; el contenido actual se distingue del PDF histórico del Narrador.
+Las pruebas actuales verifican las proyecciones de 22/25/25 personajes y la lista cerrada de campos. La validación histórica de PDF registró texto seleccionable, cuatro páginas por guion y revisión visual. Cada nueva generación requiere repetir la extracción y revisión visual; los resultados de una generación anterior no validan automáticamente los PDF nuevos.
 
 ## Pendientes externos
 

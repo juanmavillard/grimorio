@@ -1,5 +1,7 @@
 # Uso rápido del programa
 
+Esta guía describe un kit local generado con programa y manuales; no el repositorio de fuentes ni la demo de GitHub Pages. Para orientarte, consulta la [guía del programa](../manuales/general/guia-del-programa.md) o abre la [demo web](https://juanmavillard.github.io/grimorio/).
+
 ## Recorrido de una sesión
 
 **Preparación → asignación → reparto opcional → noche → día → nuevas noches/días → final confirmado → revelación.**

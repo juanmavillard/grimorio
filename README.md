@@ -10,7 +10,7 @@ Proyecto personal de **Juanma Villard**, desarrollado con JavaScript, IndexedDB 
 
 Abre la demo y prepara una partida con nombres ficticios. No requiere cuenta ni instalación. Los datos se guardan en tu navegador; no se comparten con otros visitantes. Para conservarlos o trasladarlos a otro equipo, exporta una copia JSON.
 
-La demo se publica con GitHub Pages a partir de los archivos preparados en `output/demo`. Los cambios que se suben a `main` activan su reconstrucción y publicación. El funcionamiento offline requiere completar la primera carga.
+El funcionamiento offline requiere completar la primera carga. Para volver a empezar, puedes gestionar los datos desde Recuperación.
 
 ## Qué resuelve
 
@@ -27,15 +27,6 @@ python3 -m http.server 4173 --bind 127.0.0.1
 ```
 
 Abre `http://127.0.0.1:4173` y crea una partida con nombres ficticios. Detén el servidor con Ctrl+C. Con Node y npm, `npm start` hace lo mismo. No necesitas instalar dependencias para este uso web.
-
-Para preparar únicamente los archivos de la demo:
-
-```bash
-npm run demo:build
-npm run demo:start
-```
-
-Abre `http://127.0.0.1:4174`. La demo conserva las funciones de la aplicación y sirve solo `output/demo`; no incluye las fuentes de herramientas, documentación interna ni datos personales. [Preparación de la demo](docs/tecnico/demo-web.md).
 
 ## Arquitectura y decisiones
 
@@ -85,20 +76,14 @@ Para escritorio desde fuentes: `npm run desktop:start`. [Construcción y platafo
 - Auditorías de personajes e interacciones abiertas. Las pruebas de software no certifican todas las combinaciones de reglas. [Estado de cobertura](docs/tecnico/estado-de-cobertura.md).
 - La primera carga web debe completarse antes del uso offline; no abrir como archivo HTML. `localhost`, `127.0.0.1` y distintos puertos tienen almacenamiento separado: exporta e importa la partida al cambiar de origen.
 - Almacenamiento local sin cifrado de aplicación. Los archivos de partida contienen información privada; los diagnósticos se exportan anónimos por defecto.
-- Ejecución real en Windows e Intel, Safari/iOS y accesibilidad manual siguen pendientes. Los binarios existentes no se han reconstruido tras los ajustes del portfolio.
+- Ejecución real en Windows e Intel, Safari/iOS y accesibilidad manual siguen pendientes. La validación reciente de escritorio corresponde a ejecución desde fuentes en Mac Apple Silicon.
 
 ## Autoría, fuentes y licencia
 
 Blood on the Clocktower pertenece a **The Pandemonium Institute**. Los personajes, habilidades y referencias reglamentarias proceden de la wiki oficial y otros recursos documentados en [Fuentes reglamentarias](docs/tecnico/fuentes-reglas.md). Este proyecto no implica afiliación ni aprobación del editor.
 
-El proyecto declara `UNLICENSED`; todavía no se ha elegido una licencia de reutilización para el código propio. Los permisos sobre contenido de TPI y las licencias de las dependencias son independientes. [Avisos de terceros](THIRD_PARTY_NOTICES.md) y [revisión de procedencia](docs/tecnico/atribuciones.md).
-
-## Mantener y preparar cambios
-
-La raíz de `grimorio` es la única fuente de desarrollo. Las notas e histórico privados están en `.local`, ignorado por Git; `node_modules`, `dist` y `output` tampoco se versionan. La exportación opcional de fuentes se prepara con `npm run portfolio:prepare` y se comprueba con `npm run portfolio:check`. No edites esa exportación; trabaja sobre esta raíz.
-
-[Guía de desarrollo](CONTRIBUTING.md) · [Organización del proyecto](docs/tecnico/organizacion-del-proyecto.md)
+El código se distribuye como `UNLICENSED`. Los materiales de TPI y las dependencias mantienen sus condiciones respectivas. [Avisos de terceros](THIRD_PARTY_NOTICES.md) · [Recursos y atribuciones](docs/tecnico/atribuciones.md).
 
 ## Documentación
 
-[Guía del programa](docs/manuales/general/guia-del-programa.md) · [Guardado y recuperación](docs/manuales/general/guardado-y-recuperacion.md) · [Índice completo](docs/README.md)
+[Guía del programa](docs/manuales/general/guia-del-programa.md) · [Guardado y recuperación](docs/manuales/general/guardado-y-recuperacion.md) · [Índice completo](docs/README.md) · [Desarrollo y mantenimiento](CONTRIBUTING.md)

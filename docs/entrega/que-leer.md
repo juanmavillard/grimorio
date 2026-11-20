@@ -1,5 +1,7 @@
 # Qué leer y para qué
 
+Esta guía describe un kit local generado con programa y manuales; no el repositorio de fuentes ni la demo de GitHub Pages. Para orientarte, consulta la [guía del programa](../manuales/general/guia-del-programa.md) o abre la [demo web](https://juanmavillard.github.io/grimorio/).
+
 El material está dividido por función. No hace falta aprender las 72 habilidades para jugar una primera partida.
 
 ## Si solo eres jugador

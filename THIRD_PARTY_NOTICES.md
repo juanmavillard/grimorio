@@ -29,6 +29,6 @@ Estas herramientas no se copian a la demo web estática. Sus licencias y avisos 
 
 ## Escritorio y PDF
 
-Los ejecutables Electron incorporan Chromium y Node.js con sus propios avisos, incluidos `LICENSE` y `LICENSES.chromium.html`; los paquetes requieren revisión de sus archivos reales. No se preparan nuevos ejecutables en este paso.
+Los ejecutables Electron incorporan Chromium y Node.js con sus propios avisos, incluidos `LICENSE` y `LICENSES.chromium.html`; los paquetes requieren revisión de sus archivos reales.
 
-Los generadores PDF declaran reportlab 5.1.0, pypdf 7.0.0 y Markdown 3.9 en el archivo de requisitos. No se ha verificado aquí el entorno Python de generación ni toda su cadena de dependencias. Esas bibliotecas y los PDF no forman parte de la demo web.
+Los generadores PDF declaran reportlab 5.1.0, pypdf 7.0.0 y Markdown 3.9 en el archivo de requisitos. Esas bibliotecas y los PDF no forman parte de la demo web. Al redistribuir herramientas o materiales generados, deben revisarse también los avisos de sus dependencias.

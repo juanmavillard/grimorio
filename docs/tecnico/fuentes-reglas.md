@@ -1,6 +1,6 @@
 # Fuentes reglamentarias
 
-Consulta realizada el 27 de octubre de 2026. La aplicación contiene resúmenes propios en español, no copias extensas del material protegido.
+Fuentes consultadas durante el desarrollo para los resúmenes, paráfrasis y referencias en español. Ante discrepancias reglamentarias, consultar la documentación oficial vigente y registrar el criterio utilizado.
 
 ## Autoridad principal
 

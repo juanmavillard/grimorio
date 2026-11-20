@@ -1,5 +1,7 @@
 # Versión, alcance y condiciones de uso
 
+Esta guía describe un kit local generado con programa y manuales; no el repositorio de fuentes ni la demo de GitHub Pages. Para orientarte, consulta la [guía del programa](../manuales/general/guia-del-programa.md) o abre la [demo web](https://juanmavillard.github.io/grimorio/).
+
 ## Qué contiene esta preparación
 
 Grimorio privado · Base 3, versión **1.0.1**: aplicación de la plataforma indicada (Mac universal o Windows x64), manuales de uso en HTML y tres hojas públicas de personajes en PDF. Los personajes se distribuyen en cuatro páginas por guion: Aldeanos, Forasteros, Esbirros y Demonios. Las habilidades están parafraseadas.
@@ -27,7 +29,7 @@ No incluye Viajeros, Fábulas, guiones personalizados, cuentas, telemetría ni m
 
 El apartado 4, Digital & Online, de las [condiciones oficiales de Blood on the Clocktower](https://bloodontheclocktower.com/pages/terms-of-use) permite crear herramientas electrónicas para uso personal y restringe compartirlas o distribuirlas. Preparar una carpeta local no concede permiso para enviarla, tampoco por el hecho de que sea gratuita o se destine a amigos.
 
-Antes de entregar copias, solicita a The Pandemonium Institute una autorización para tu caso y conserva su respuesta. Puedes consultarles en storyteller@bloodontheclocktower.com. Esta preparación no se ha publicado ni enviado automáticamente a nadie.
+Antes de entregar copias, solicita a The Pandemonium Institute una autorización para tu caso y conserva su respuesta. Puedes consultarles en storyteller@bloodontheclocktower.com. El generador de kits no envía ni publica sus resultados automáticamente; el despliegue de la demo web se gestiona por separado.
 
 La traducción y los materiales derivados también quedan sujetos a sus condiciones. No se incorporan recursos gráficos oficiales. La aplicación es un proyecto no oficial y no está afiliada ni patrocinada por The Pandemonium Institute o Steven Medway.
 

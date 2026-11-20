@@ -47,7 +47,7 @@ El [índice de manuales](manuales/README.md) organiza reglas, guías, almanaques
 - Auditorías: [Trouble Brewing](tecnico/auditorias/trouble-brewing.md), [Bad Moon Rising](tecnico/auditorias/bad-moon-rising.md), [Sects & Violets](tecnico/auditorias/sects-and-violets.md) y [transversal](tecnico/auditorias/base3.md).
 - [Mejoras futuras](tecnico/mejoras-futuras.md).
 
-## Portfolio y demo
+## Demo y recursos
 
 - [Preparación local de la demo](tecnico/demo-web.md).
-- [Procedencia, atribuciones y selección de archivos](tecnico/atribuciones.md).
+- [Recursos y atribuciones](tecnico/atribuciones.md).

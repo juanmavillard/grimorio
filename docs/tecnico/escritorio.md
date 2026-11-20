@@ -1,5 +1,9 @@
 # Escritorio: construcción y validación
 
+## Estado de esta documentación
+
+El repositorio contiene fuentes y herramientas de construcción. La última comprobación del 20 de noviembre de 2026 ejecutó Electron desde fuentes en Mac Apple Silicon. Los resultados de paquetes que aparecen más abajo pertenecen al cierre histórico del 7 de noviembre; no certifican paquetes reconstruidos con las fuentes actuales. Para una nueva entrega hay que construir y verificar de nuevo.
+
 ## Contrato
 
 Electron y electron-builder son dependencias de desarrollo con versiones exactas en package.json y package-lock.json. Los usuarios finales reciben el runtime incluido. El motor, IndexedDB 2 y el JSON de partida 4 se conservan.
@@ -30,13 +34,13 @@ La lista de inclusión del paquete excluye pruebas, perfiles, copias personales 
 
 En macOS se entrega un ZIP universal Intel/Apple Silicon; en Windows un ejecutable portable x64 sin elevación. No se contratan certificados ni se notariza. Los avisos de primera apertura son esperables y no se recomienda desactivar las protecciones del sistema.
 
-## Pruebas y matriz real
+## Pruebas y matriz histórica de paquetes
 
 Las pruebas de Electron usan perfiles temporales y no abren el perfil personal. `GRIMORIO_DESKTOP_TEST_PROFILE` permite seleccionar explícitamente ese perfil aislado durante una prueba; no debe configurarse en el uso normal.
 
 Comprobar: arranque offline; tres guiones; reparto, ayuda y Plaza; exportación cancelada, guardada y fallida; importación inválida; recuperación; deshacer; cierre mientras se escribe; cierre forzado; segundo doble clic; reapertura y sustitución del paquete conservando datos; contenido del archivo empaquetado y salida sin procesos propios.
 
-| Plataforma | Resultado de la versión 1.0.1 |
+| Plataforma | Resultado histórico documentado del cierre del 7 de noviembre de 2026 |
 |---|---|
 | macOS Apple Silicon | Verificado en macOS 27.2 arm64: desarrollo y aplicación universal empaquetada |
 | macOS Intel | Binario x86_64 incluido y comprobado con lipo; ejecución real pendiente |
@@ -46,9 +50,9 @@ La generación no equivale a prueba de ejecución. Windows se construye desde es
 
 Cierre del 7 de noviembre de 2026: `npm run check` supera 196 pruebas y las comprobaciones de sintaxis, enlaces y manifiestos. `npm run test:browser:all` supera los recorridos web completos; también pasa el recorrido offline de WebKit. `npm run test:desktop` y `npm run test:desktop:package` superan los tres guiones, preparación/reparto, primera noche, ayuda, Plaza, deshacer/rehacer, importación/exportación, cancelación y error de archivo, cuota simulada, cierre cancelado por un borrador no guardado, cierre mientras se confirma una escritura, rescate completo desde el diálogo de cierre, segunda instancia y cierre forzado. El recorrido empaquetado traslada además la aplicación y comprueba que conserva los datos del mismo perfil.
 
-El paquete final contiene 99 archivos autorizados, coincidentes con las fuentes, y las licencias del runtime. `lipo` confirma x86_64 y arm64. Las pruebas usan perfiles temporales del mismo usuario del sistema: no equivalen a una prueba en otra cuenta del sistema ni de la primera apertura de una descarga marcada en cuarentena. Quedan pendientes Gatekeeper/SmartScreen en los equipos destinatarios, Windows real, Mac Intel, usuario nuevo del sistema y accesibilidad manual con VoiceOver.
+El cierre histórico documentó 99 archivos de aplicación coincidentes con las fuentes de aquel momento y las licencias del runtime. Se registró la comprobación x86_64 y arm64 mediante `lipo`; no se repitió aquí sobre un paquete nuevo. Las pruebas usan perfiles temporales del mismo usuario del sistema: no equivalen a una prueba en otra cuenta del sistema ni de la primera apertura de una descarga marcada en cuarentena. Quedan pendientes Gatekeeper/SmartScreen en los equipos destinatarios, Windows real, Mac Intel, usuario nuevo del sistema y accesibilidad manual con VoiceOver.
 
-La entrega comprobada es `dist/Grimorio-Base3-1.0.1-Mac-universal.zip`; su SHA-256 se conserva en `dist/SHA256-mac.txt`. La construcción ejecuta la puerta de calidad antes de empaquetar y comprueba que cada recurso coincide con las fuentes.
+La salida esperada de una nueva construcción es `dist/Grimorio-Base3-1.0.1-Mac-universal.zip`, con SHA-256 en `dist/SHA256-mac.txt`. Son resultados generados, no archivos incluidos en el repositorio. La construcción ejecuta la puerta de calidad antes de empaquetar y comprueba que cada recurso coincide con las fuentes.
 
 ## Mantenimiento
 
@@ -60,4 +64,4 @@ Actualizar Electron dentro de su periodo de soporte y repetir las pruebas antes 
 
 `output/pdf` contiene hojas públicas generadas; `output/qa` conserva comprobaciones; `output/entrega` reúne las carpetas y ZIP con programa, manuales y PDF. Ninguna almacena partidas personales: el programa utiliza el perfil del usuario.
 
-El ejecutable Windows es portátil x64, no firmado, sin elevación solicitada. El validador comprueba los encabezados PE, extrae los 73 archivos reales del lanzador y los compara con el paquete original; los 99 archivos de la aplicación dentro del ASAR coinciden con las fuentes. También valida nombre, versión, punto de entrada y licencias en sus ubicaciones propias de cada sistema. `signExecutable: false` impide firmar comercialmente pero conserva icono y metadatos propios. El protocolo interno, el identificador y el perfil siguen siendo los mismos. SmartScreen puede advertir sobre el editor desconocido. La prueba real en Windows se realiza con npm run test:desktop:package y un usuario limpio; mientras no se ejecute, permanece pendiente.
+El ejecutable Windows es portátil x64, no firmado, sin elevación solicitada. El validador comprueba los encabezados PE, extrae el payload y lo compara con el paquete original. La revisión histórica registró 73 archivos de lanzador y 99 archivos de aplicación en ASAR; los recuentos y las huellas deben comprobarse en cada construcción nueva. También valida nombre, versión, punto de entrada y licencias en sus ubicaciones propias de cada sistema. `signExecutable: false` impide firmar comercialmente pero conserva icono y metadatos propios. El protocolo interno, el identificador y el perfil siguen siendo los mismos. SmartScreen puede advertir sobre el editor desconocido. La prueba real en Windows se realiza con npm run test:desktop:package y un usuario limpio; mientras no se ejecute, permanece pendiente.

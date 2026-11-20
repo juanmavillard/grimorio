@@ -1,5 +1,7 @@
 # Tu primera partida paso a paso
 
+Esta guía describe un kit local generado con programa y manuales; no el repositorio de fuentes ni la demo de GitHub Pages. Para orientarte, consulta la [guía del programa](../manuales/general/guia-del-programa.md) o abre la [demo web](https://juanmavillard.github.io/grimorio/).
+
 Empieza con Trouble Brewing. Para que aprendas el programa sin presión, realiza primero una partida de prueba con nombres ficticios. La aplicación guarda una sola partida activa: al reemplazar el ensayo, utiliza Nueva partida y decide si quieres conservar un JSON.
 
 ## 1. Qué necesitas

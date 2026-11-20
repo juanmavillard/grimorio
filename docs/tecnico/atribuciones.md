@@ -1,44 +1,33 @@
-# Revisión de procedencia y publicación
+# Recursos y atribuciones
 
-Revisión del 20 de noviembre de 2026. Inventario de evidencias y pendientes, no certificación jurídica ni autorización de distribución.
+## Contenido de Blood on the Clocktower
 
-## Contenido y recursos
+Blood on the Clocktower pertenece a The Pandemonium Institute. Grimorio es un proyecto independiente y no oficial.
 
-| Material | Archivos | Procedencia comprobable | Estado |
-| --- | --- | --- | --- |
-| Nombres y habilidades de 72 personajes | `src/scripts/*/data.js` | Datos en código y referencias a wiki y recursos oficiales | Redistribución pendiente de aclarar con TPI |
-| Ayuda y explicaciones reglamentarias | `src/ui/help.js`, referencias de guion y manuales | Documentación declara consulta de fuentes oficiales y materiales enlazados por Villacuervos | No certificada la autoría de cada traducción o paráfrasis |
-| Reglas y orden de fases | Motor y políticas de guion | Implementación propia sobre el juego, fuentes documentadas | No equiparar autoría de la implementación con permiso sobre todo el contenido |
-| Manuales generados | `docs/manuales/` | Derivan del contenido de la ayuda | Se conservan sujetos al permiso sobre ese contenido; el PDF histórico queda fuera del repositorio |
-| Icono de la aplicación | `icon.svg`, `desktop/assets/` | Documentación declara SVG propio; no se ha certificado autoría mediante historial | No se han añadido iconos oficiales ni capturas del juego |
-| Diagrama del README | Bloque Mermaid | Preparado a partir de la arquitectura examinada | No reproduce imágenes del juego |
+| Contenido | Ubicación | Fuentes de referencia |
+| --- | --- | --- |
+| Personajes y resúmenes de habilidades | src/scripts/*/data.js | Wiki oficial y recursos publicados por TPI |
+| Ayuda e interacciones | src/ui/help.js y políticas de guion | Páginas oficiales de personajes y reglas |
+| Orden nocturno y composición | Datos y políticas de guion | Wiki y recursos oficiales |
+| Manuales y referencias de jugadores | docs/manuales | Ayuda estructurada de la aplicación y fuentes enlazadas por personaje |
+| Terminología española | Catálogos y documentación | Wiki y materiales de consulta enlazados por Villacuervos |
 
-[Fuentes reglamentarias](fuentes-reglas.md) conserva referencias. Su afirmación histórica de “resúmenes propios” no sustituye una verificación fragmento a fragmento. Las fuentes descargables no conceden por sí solas permiso para cualquier uso: [política comunitaria](https://bloodontheclocktower.com/pages/community-created-content-policy), [términos](https://bloodontheclocktower.com/pages/terms-of-use) y [recursos](https://release.botc.app/resources/).
+Las referencias se detallan en [Fuentes reglamentarias](fuentes-reglas.md). Los resúmenes y traducciones remiten a sus fuentes; no se presentan como contenido del juego de autoría independiente.
 
-## Dependencias
+Los iconos de aplicación están en `icon.svg` y `desktop/assets`. El diagrama del README representa la arquitectura del programa.
 
-El bloqueo contiene 358 entradas con licencia declarada: MIT (261), ISC (41), Apache-2.0 (20), BSD-2-Clause (11), BSD-3-Clause (10), BlueOak-1.0.0 (8), y una entrada de cada una de Python-2.0, MPL-2.0, WTFPL OR ISC, WTFPL, 0BSD, (MIT OR CC0-1.0) y (WTFPL OR MIT).
+## Código y dependencias
 
-Las seis dependencias directas instaladas tienen archivos de licencia; Playwright, Prettier y axe-core incluyen también avisos de terceros. [Avisos del proyecto](../../THIRD_PARTY_NOTICES.md). No se ha validado aquí todo el contenido de esos avisos, dependencias binarias, fuentes tipográficas o dependencias Python transitivas.
+El código propio está declarado `UNLICENSED`. Esta declaración no modifica los derechos o condiciones del contenido del juego ni las licencias de las dependencias.
 
-La demo no copia paquetes npm ni bibliotecas Python. Los ejecutables necesitan sus avisos de runtime; no se reconstruyen ni se dan por listos para distribuir. El código propio sigue `UNLICENSED`; elegir una licencia de reutilización es una decisión pendiente de Juanma y no una condición ya aceptada con el editor.
+Las versiones y licencias declaradas de las herramientas se recogen en [Avisos de terceros](../../THIRD_PARTY_NOTICES.md) y en `package-lock.json`. La demo estática no incluye las herramientas npm ni las bibliotecas Python usadas para generar materiales.
 
-## Selección de archivos
+Al distribuir ejecutables Electron deben acompañarlos los avisos de su runtime, incluidos Chromium y Node.js. Los PDF se generan con las bibliotecas fijadas en `scripts/requirements-pdf.txt`.
 
-`npm run portfolio:prepare` genera `output/portfolio-source.zip` con código, pruebas, herramientas, metadatos, avisos y documentación pública. Es un ZIP de inspección, no un archivo que se deba subir como único contenido del repositorio. Usa raíces y extensiones seleccionadas, rechaza enlaces simbólicos y excluye el archivo privado `.local`, dependencias instaladas, perfiles, carpetas generadas y archivos ocultos no seleccionados. No crea Git, commits ni subidas.
+## Referencias oficiales
 
-`.gitignore` incluye exclusiones para `.local`, correspondencia interna, entornos locales, claves, logs y resultados de pruebas. Es una ayuda para archivos nuevos; no retira archivos ya versionados. Una revisión final del contenido y del futuro estado de Git sigue siendo necesaria antes de publicar.
+- [Política comunitaria de TPI](https://bloodontheclocktower.com/pages/community-created-content-policy).
+- [Términos de uso](https://bloodontheclocktower.com/pages/terms-of-use).
+- [Recursos oficiales](https://release.botc.app/resources/).
 
-El chequeo textual de preparación no encontró patrones típicos de claves privadas o tokens en las fuentes seleccionadas. No constituye un escáner exhaustivo de secretos ni verifica el contenido de todos los PDF o binarios. Los contactos de TPI en documentación son públicos, no credenciales. No se han copiado archivos de partidas del usuario.
-
-La selección mantiene el producto completo: no elimina reglas, guiones, catálogos o manuales para simular una herramienta genérica. Su preparación no acredita que todo su contenido esté autorizado para distribución.
-
-## Pendientes antes de publicar
-
-- La consulta se ha enviado según confirmación de Juanma; registrar el alcance de la respuesta cuando llegue.
-- Decidir licencia del código propio y completar avisos según el contenido finalmente distribuido.
-- Revisar textos, PDF y recursos cuya procedencia o permiso no está certificado.
-- Revisar la selección final y el estado de Git antes de nuevos commits.
-- Comprobar el estado del despliegue GitHub Pages después de actualizar main.
-
-No se añaden capturas al README en este paso. Se usa el diagrama técnico; imágenes del juego requerirían revisión independiente. No se prepara vídeo ni caso de estudio.
+La publicación de este proyecto no implica afiliación ni aprobación de TPI. Cada recurso de terceros mantiene sus condiciones de uso y distribución.

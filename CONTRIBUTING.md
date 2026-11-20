@@ -1,6 +1,6 @@
 # Desarrollo y mantenimiento
 
-Trabaja siempre sobre la raíz de `grimorio`. `output` y `dist` son resultados regenerables; `.local` contiene notas e histórico privados que no deben publicarse.
+Modifica las fuentes del repositorio. Los resultados de construcción de `output` y `dist` se generan a partir de ellas y están excluidos del control de versiones.
 
 ## Preparar el entorno
 
@@ -26,20 +26,15 @@ Abre `http://127.0.0.1:4173`. Usa perfiles aislados y nombres ficticios para pro
 
 No cambies identificador, origen, perfil de Electron o nombres de bases locales por estética: afectan a compatibilidad y acceso a datos. La versión de package.json representa el producto; no debe incrementarse solo por reorganizar documentos.
 
-## Revisar lo que se compartiría
+## Publicar cambios
 
-```bash
-npm run portfolio:prepare
-npm run portfolio:check
-```
+Revisa `git status --short` y `git diff --cached --stat` antes de confirmar cambios. Mantén fuera del repositorio credenciales, datos personales y resultados generados.
 
-El ZIP seleccionado debe coincidir con la raíz. Se genera con Python 3, sin instalar bibliotecas adicionales. Una edición posterior exige regenerarla. La raíz es la fuente única para futuros cambios y commits; la copia no es un segundo repositorio de desarrollo.
-
-Cuando se inicialice Git, revisa `git status --short` y `git diff --cached --stat` antes de confirmar cambios. Verifica que no entran `.local`, output, dist, node_modules, credenciales o partidas. No uses `git add -f` para saltar las exclusiones sin revisar el archivo. No se han creado repositorio remoto, commits ni automatismos de publicación con esta preparación.
+El flujo `.github/workflows/pages.yml` construye y publica la demo al actualizar main. Comprueba su resultado en Actions. La [guía de demo](docs/tecnico/demo-web.md) describe la construcción y las pruebas locales.
 
 ## Antes de una nueva entrega
 
 - Actualiza README, cobertura y plataformas solo con resultados realmente comprobados.
-- Conserva atribuciones y revisa permisos según el contenido que se distribuya. El proyecto continúa `UNLICENSED` hasta una decisión explícita sobre el código propio.
+- Conserva atribuciones y revisa permisos según el contenido que se distribuya. El código está declarado `UNLICENSED`; conserva las condiciones de los materiales de terceros.
 - Regenera resultados desde las fuentes. No reutilices binarios antiguos como si incluyeran las mejoras actuales.
-- No publiques fuentes, demo ni ejecutables sin resolver el alcance de distribución acordado con TPI.
+- Revisa que cualquier material incorporado pueda distribuirse bajo sus condiciones respectivas.

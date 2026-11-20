@@ -2,6 +2,8 @@
 
 El Grimorio de escritorio abre una ventana propia y funciona sin Internet desde el primer inicio. No necesitas Python, Node, terminal ni un servidor localhost.
 
+Esta guía se aplica a un ejecutable construido y verificado para tu plataforma. El repositorio y la demo web no incluyen por sí mismos ese ejecutable. La validación reciente corresponde a Electron desde fuentes; las pruebas históricas de paquetes se distinguen en la [matriz de escritorio del repositorio](https://github.com/juanmavillard/grimorio/blob/main/docs/tecnico/escritorio.md).
+
 ## Abrir
 
 - Windows 10/11 de 64 bits: abre `Grimorio-Base3-1.0.1-Windows.exe`, portátil y sin instalación ni permisos de administrador. El contenido se comprueba al generarlo; su ejecución real en Windows todavía está pendiente. Utiliza la entrega Windows: el ZIP de Mac no contiene este ejecutable.
@@ -33,6 +35,6 @@ El diagnóstico muestra versión de aplicación, versión de recursos y formato 
 
 No se instala en iPhone/iPad ni Android. El ejecutable Windows inicial es x64; no hay una entrega nativa para Windows ARM. Las arquitecturas solo se consideran verificadas cuando constan en la matriz técnica de pruebas reales.
 
-El empaquetado no concede permiso de distribución del contenido de Blood on the Clocktower. Antes de compartir una copia con otras personas, resuelve el permiso indicado en las condiciones de The Pandemonium Institute. No se publica nada automáticamente.
+El empaquetado no concede permiso de distribución del contenido de Blood on the Clocktower. Antes de compartir una copia con otras personas, resuelve el permiso indicado en las condiciones de The Pandemonium Institute. El escritorio no incorpora un actualizador automático. El flujo de GitHub Pages publica únicamente la demo web.
 
 Los archivos y límites se explican en [Guardado y recuperación](guardado-y-recuperacion.md).

@@ -1,5 +1,7 @@
 # Empieza aquí · Grimorio Base 3
 
+Esta guía describe un kit local generado con programa y manuales; no el repositorio de fuentes ni la demo de GitHub Pages. Para orientarte, consulta la [guía del programa](../manuales/general/guia-del-programa.md) o abre la [demo web](https://juanmavillard.github.io/grimorio/).
+
 Esta carpeta reúne el asistente de Narrador y lo necesario para aprender a utilizarlo. El juego es presencial: una persona dirige con el ordenador y las demás juegan sentadas alrededor de una mesa o en círculo.
 
 **No necesitas leerlo todo. Elige tu recorrido.** La aplicación no es una partida multijugador por Internet. Los jugadores no necesitan instalar nada.

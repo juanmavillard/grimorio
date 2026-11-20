@@ -18,7 +18,7 @@ La batería incluye partidas automatizadas hasta la victoria en los tres guiones
 
 ## Seguimiento reglamentario
 
-Las 72 fichas mantienen pendiente su auditoría integral. El seguimiento detallado de la revisión anterior identificó 579 casos: 576 pendientes de evidencia de cierre y tres verificados parcialmente en Trouble Brewing. Ese registro es histórico: no es una medición de cobertura de código ni significa que haya 576 errores. No se ha realizado una auditoría individual nueva en la preparación del portfolio.
+Las 72 fichas mantienen pendiente su auditoría integral. El seguimiento detallado de la revisión anterior identificó 579 casos: 576 pendientes de evidencia de cierre y tres verificados parcialmente en Trouble Brewing. Ese registro es histórico: no es una medición de cobertura de código ni significa que haya 576 errores. La fecha de validación técnica no implica una nueva auditoría individual de esos casos.
 
 | Guion | Personajes | Casos registrados | Pendientes | Verificados |
 | --- | --- | --- | --- | --- |
@@ -34,4 +34,4 @@ La aplicación es local y no envía analítica ni datos de partida. Las fuentes 
 
 La validación del 20 de noviembre de 2026 supera 196 pruebas Node y los recorridos Chromium de los tres guiones, almacenamiento, cuota, concurrencia, cierre inesperado, borradores, rescate y actualización offline. Electron se comprobó desde fuentes en Mac Apple Silicon con un perfil aislado. Estas comprobaciones no incrementan por sí solas los casos reglamentarios cerrados.
 
-La [matriz de escritorio](escritorio.md) distingue comprobaciones históricas de paquetes de ejecución real. Windows real, Mac Intel, Safari/iOS y accesibilidad manual conservan sus pendientes. Los binarios generados anteriormente no incorporan los cambios actuales del portfolio hasta reconstruirlos y validarlos.
+La [matriz de escritorio](escritorio.md) distingue comprobaciones históricas de paquetes de ejecución real. Windows real, Mac Intel, Safari/iOS y accesibilidad manual conservan sus pendientes. Cada nueva entrega de escritorio requiere reconstrucción y validación de sus paquetes.
